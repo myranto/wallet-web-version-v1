@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import { Message, SupportAgent } from "@mui/icons-material";
+import { Message, Person, SupportAgent, Wallet } from "@mui/icons-material";
 // import Notification from "../../notification/Notification";
 import './header.css'
 import Sidebar from '../side-bar/Sidebar';
@@ -53,7 +53,7 @@ function Header({ messageOpen, currentComponent = null, toggleDrawer, drawerWidt
         >
             <Container maxWidth="xxl">
                 <Toolbar disableGutters>
-                    <SupportAgent sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <Wallet sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -69,7 +69,7 @@ function Header({ messageOpen, currentComponent = null, toggleDrawer, drawerWidt
                             textDecoration: 'none',
                         }}
                     >
-                        WebAssist
+                        WALLET
                     </Typography>
                     {/*menu pour les pages */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
@@ -104,11 +104,11 @@ function Header({ messageOpen, currentComponent = null, toggleDrawer, drawerWidt
 
 
                     {/* partie droite de l'header */}
-                    <SupportAgent sx={{ display: { xs: 'none', md: 'flex' }, mr: 0 }} />
+                    <Person sx={{ display: { xs: 'none', md: 'flex' }, mr: 0 }} />
                     <Box sx={{
                         flexGrow: 0
                     }}>
-                        <Button color="inherit">{person?.prenom}
+                        <Button color="inherit">My Ranto
                             <label
                                 variant="h5"
                                 className="hide-on-mobile"
@@ -120,7 +120,7 @@ function Header({ messageOpen, currentComponent = null, toggleDrawer, drawerWidt
                                     textDecoration: 'none',
                                 }}
                             >
-                                /{Personrole[person?.role]}
+                                /Admin
                             </label>
                         </Button>
                     </Box>

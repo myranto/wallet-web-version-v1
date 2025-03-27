@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import ToolbarInfo from './toolbar/ToolbarInfo';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { admin_pages } from '../../../utils/utils';
+import { admin_pages } from '../../../utils/menuitem';
 import { getProfilStorage } from '../../../utils/function';
 
 const Sidebar = ({ toggleDrawer }) => {

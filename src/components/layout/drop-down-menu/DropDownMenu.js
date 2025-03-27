@@ -32,7 +32,7 @@ const DropDownMenu = ({ setMessage, setNotif, setSuccess, img }) => {
         });
     }
     const logout = () => {
-        setMessage('déconnexion réussi')
+        setMessage('successful logout')
         setNotif(true)
         setSuccess(true)
         setTimeout(() => {
@@ -44,8 +44,8 @@ const DropDownMenu = ({ setMessage, setNotif, setSuccess, img }) => {
     }
     const settings = [
         { name: 'Profil', icon: <Person />, click: profile },
-        { name: 'Paramètre', icon: <Settings />, click: parameter },
-        { name: 'Déconnexion', icon: <Logout />, click: logout }
+        { name: 'Settings', icon: <Settings />, click: parameter },
+        { name: 'Log out', icon: <Logout />, click: logout }
     ];
 
     return (

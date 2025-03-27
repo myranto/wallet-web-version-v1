@@ -30,7 +30,7 @@ const ToolbarInfo = ({ toggleDrawer = null }) => {
                         </IconButton>
                         {/* <AccountCircle sx={{ fontSize: 28 }} color="primary" /> */}
                         <Typography variant="h5" component="p" sx={{ marginLeft: 1 }}>
-                            {person?.prenom}
+                            My Ranto
                         </Typography>
                     </Box>
                     <IconButton color="error" onClick={() => {
@@ -46,7 +46,7 @@ const ToolbarInfo = ({ toggleDrawer = null }) => {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
                     <BadgeRounded sx={{ fontSize: 26 }} color='primary' />
                     <Typography variant="h6" component="p" sx={{ marginLeft: 1 }}>
-                        {Personrole[person?.role]}
+                        Admin
                     </Typography>
                 </Typography>
             </Toolbar>
