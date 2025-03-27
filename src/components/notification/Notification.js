@@ -11,7 +11,7 @@ export default function Notification({message = 'Action réussi', success = fals
     }, [message, setNotif])
     return (
         <Box sx={{width: 500}}>
-            <Snackbar anchorOrigin={{vertical: 'top', horizontal: 'right'}} open={notif} autoHideDuration={5000}
+            <Snackbar anchorOrigin={{vertical: 'top', horizontal: 'right'}} open={notif} autoHideDuration={3000}
                       onClose={() => setNotif(false)}>
                 <Alert
                     onClose={() => setNotif(false)}
