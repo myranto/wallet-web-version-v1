@@ -22,8 +22,8 @@ const Roads = () => {
     <BrowserRouter>
       <Suspense fallback={<Loading />}>
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
           <Route path={"/login"} element={<Login />} />
           <Route exact path="/home" name="Page home" element={<PrivateRoute role={1} Component={Home} componentName={"Home"} />} />
           <Route path={"/index"} element={<PrivateRoute role={1} Component={Index} componentName={"Index"} />} />
