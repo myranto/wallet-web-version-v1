@@ -14,7 +14,7 @@ import './header.css'
 import Sidebar from '../side-bar/Sidebar';
 import DropDownMenu from '../drop-down-menu/DropDownMenu';
 import { Collapse, Drawer, useMediaQuery } from '@mui/material';
-import { getProfilStorage,Personrole } from '../../../utils/function';
+import { getProfilStorage, Personrole } from '../../../utils/function';
 // import { UserOperation } from '../../../classes/users/UserOperation';
 
 // import HeaderNotification from '../../notification/HeaderNotification/HeaderNotification';
@@ -42,12 +42,12 @@ function Header({ messageOpen, currentComponent = null, toggleDrawer, drawerWidt
     // }, [person?.photo])
     return (
         <AppBar
-            position="static"
+            // position="static"
             sx={{
-                position: 'fixed',
+                position: 'relative',
                 backdropFilter: 'blur(10px)',
-                width: drawerWidth,
-                right: 0,
+                width: 'drawerWidth',
+                left: open ? '18%' : 0,
                 zIndex: (theme) => theme.zIndex.drawer - 1
             }}
         >
@@ -95,16 +95,12 @@ function Header({ messageOpen, currentComponent = null, toggleDrawer, drawerWidt
                                 <Message />
                             </IconButton>
                         }
-                        <Collapse in={open}>
-                            <Drawer open={open} onClose={toggleDrawer}>
-                                <Sidebar toggleDrawer={toggleDrawer} />
-                            </Drawer>
-                        </Collapse>
+                        
                     </Box>
 
 
                     {/* partie droite de l'header */}
-                    <Person sx={{ display: { xs: 'none', md: 'flex' }, mr: 0 }} />
+                    <Person sx={{ display: { xs: 'none', md: 'flex' } }} />
                     <Box sx={{
                         flexGrow: 0
                     }}>
@@ -124,7 +120,7 @@ function Header({ messageOpen, currentComponent = null, toggleDrawer, drawerWidt
                             </label>
                         </Button>
                     </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+                    <Box sx={{ display: { xs: 'flex', md: 'flex' }, mr: open?27:0 }}>
                         {/* {person?.role > 1 && <ChatNotification socket={socket} person={person} />} */}
                         {/* <HeaderNotification socket={socket} /> */}
                         <DropDownMenu img={img} setMessage={setMessage} setNotif={setNotif} setSuccess={setSuccess} />

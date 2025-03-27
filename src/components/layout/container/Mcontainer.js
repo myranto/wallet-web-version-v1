@@ -1,6 +1,7 @@
-import { Box, CssBaseline, useMediaQuery } from "@mui/material";
+import { Box, Collapse, CssBaseline, Drawer, useMediaQuery } from "@mui/material";
 import Header from "../header/Header";
 import React, { Fragment, useState } from "react";
+import Sidebar from "../side-bar/Sidebar";
 
 // composant de base utiliser pour toutes les pages
 // afin d'avoir un design uniforme
@@ -26,11 +27,23 @@ export default function Mcontainer({ Component = null, componentName = null, soc
         <Fragment>
             <CssBaseline />
             <Header messageOpen={toggleDrawerDiscu} drawerWidth={drawerWidth} open={open} socket={socket} toggleDrawer={toggleDrawer} currentComponent={componentName} />
-
+            <Collapse in={open}>
+                            <Drawer
+                                open={open}
+                                onClose={toggleDrawer}
+                                anchor="left"
+                                variant='persistent'
+                                // sx={{ height: '10px' }}
+                            >
+                                <Sidebar toggleDrawer={toggleDrawer} />
+                            </Drawer>
+                        </Collapse>
             {Component &&
                 <Box sx={{
-                    width: drawerWidth,
-                    float: 'right'
+                    width: !open ? '100%' : '81%',
+                    float: 'right',
+                    // backgroundColor:'blue',
+                    right:0
                 }}>
                     <Component toggleDrawer={toggleDrawerDiscu} open={openD} socket={socket} />
                 </Box>

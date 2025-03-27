@@ -33,23 +33,23 @@ const ToolbarInfo = ({ toggleDrawer = null }) => {
                             My Ranto
                         </Typography>
                     </Box>
-                    <IconButton color="error" onClick={() => {
+                    {/* <IconButton color="error" onClick={() => {
                         if (toggleDrawer) {
                             toggleDrawer()
                         }
                     }} >
                         <CloseRounded sx={{ fontSize: 20 }} />
-                    </IconButton>
+                    </IconButton> */}
                 </Typography>
             </Toolbar>
-            <Toolbar>
+            {/* <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
                     <BadgeRounded sx={{ fontSize: 26 }} color='primary' />
                     <Typography variant="h6" component="p" sx={{ marginLeft: 1 }}>
                         Admin
                     </Typography>
                 </Typography>
-            </Toolbar>
+            </Toolbar> */}
             <Divider />
         </>
     )
