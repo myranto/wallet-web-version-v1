@@ -46,8 +46,8 @@ function Header({ messageOpen, currentComponent = null, toggleDrawer, drawerWidt
             sx={{
                 position: 'relative',
                 backdropFilter: 'blur(10px)',
-                width: 'drawerWidth',
-                left: open ? '18%' : 0,
+                width: drawerWidth,
+                left: open ? '250px' : 0,
                 zIndex: (theme) => theme.zIndex.drawer - 1
             }}
         >
@@ -120,7 +120,7 @@ function Header({ messageOpen, currentComponent = null, toggleDrawer, drawerWidt
                             </label>
                         </Button>
                     </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'flex' }, mr: open?27:0 }}>
+                    <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
                         {/* {person?.role > 1 && <ChatNotification socket={socket} person={person} />} */}
                         {/* <HeaderNotification socket={socket} /> */}
                         <DropDownMenu img={img} setMessage={setMessage} setNotif={setNotif} setSuccess={setSuccess} />

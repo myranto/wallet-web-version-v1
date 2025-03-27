@@ -9,7 +9,7 @@ export default function Mcontainer({ Component = null, componentName = null, soc
     const isMobile = useMediaQuery('(max-width:600px)');
     const [open, setOpen] = React.useState(false);
     const [openD, setOpenD] = React.useState(isMobile ? true : false);
-    const [drawerWidth, setDrawerWidth] = useState(!open ? '100%' : '87%');
+    const [drawerWidth, setDrawerWidth] = useState(open ? 'calc(100% - 250px)' : '100%');
 
     const toggleDrawerDiscu = () => {
         setOpenD(!openD)
@@ -17,7 +17,8 @@ export default function Mcontainer({ Component = null, componentName = null, soc
     const toggleDrawer = () => {
         setOpen(!open)
         if (!isMobile) {
-            setDrawerWidth(open ? '100%' : '87%');
+            // setDrawerWidth(open ? '100%' : '87%');
+            setDrawerWidth(!open ? 'calc(100% - 250px)' : '100%');
         } if (isMobile) {
             setDrawerWidth('100%');
 
@@ -40,7 +41,7 @@ export default function Mcontainer({ Component = null, componentName = null, soc
                         </Collapse>
             {Component &&
                 <Box sx={{
-                    width: !open ? '100%' : '81%',
+                    width: drawerWidth,
                     float: 'right',
                     // backgroundColor:'blue',
                     right:0
