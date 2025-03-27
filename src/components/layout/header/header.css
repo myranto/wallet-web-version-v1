@@ -1,0 +1,9 @@
+.hide-on-mobile {
+    display: block;
+}
+
+@media (max-width: 600px) {
+    .hide-on-mobile {
+        display: none;
+    }
+}
