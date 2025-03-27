@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import { getToken } from "../../utils/menuitem";
+import { getToken } from "../../utils/function";
 
 // class mère pour les requetes d'appel d'api
 export class Api {
