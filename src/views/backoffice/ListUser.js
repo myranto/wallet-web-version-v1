@@ -19,18 +19,18 @@ const rows = [
     createData('Cupcake', 'Cupcake', 'Cupcake', 'Cupcake'),
     createData('Gingerbread', 'Gingerbread', 'Gingerbread', 'Gingerbread'),
 ];
-
+const headColor = 'white'
 export default function ListUser() {
     return (
         <>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead sx={{ backgroundColor: '#00e5ff' }}>
+                    <TableHead sx={{ backgroundColor: '#1976d2' }}>
                         <TableRow>
-                            <TableCell>Nom</TableCell>
-                            <TableCell align="right">Mail</TableCell>
-                            <TableCell align="right">Téléphone</TableCell>
-                            <TableCell align="right">Role</TableCell>
+                            <TableCell sx={{ color:headColor }}>Nom</TableCell>
+                            <TableCell sx={{ color:headColor }} align="right">Mail</TableCell>
+                            <TableCell sx={{ color:headColor }} align="right">Téléphone</TableCell>
+                            <TableCell sx={{ color:headColor }} align="right">Role</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
