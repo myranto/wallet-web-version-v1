@@ -31,7 +31,7 @@ const Sidebar = ({ toggleDrawer }) => {
                         {row?.dropDown ?
 
                             <>
-                                <Accordion sx={{ boxShadow: 'none', '&:before': { display: 'none' } }} >
+                                <Accordion key={index} sx={{ boxShadow: 'none', '&:before': { display: 'none' } }} >
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon />}
                                         aria-controls="panel2-content"

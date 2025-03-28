@@ -2,6 +2,12 @@ import * as React from 'react';
 import { Pagination, Stack } from '@mui/material';
 import Mtable from '../../components/List/Mtable';
 
+// utilisation de la table généralisé
+
+/*
+tout d'abord, avoir les données
+*/
+
 function createData(name, mail, phone, role) {
     const res = {
         name: name,
@@ -13,6 +19,11 @@ function createData(name, mail, phone, role) {
     }
     return res;
 }
+
+/*
+Ensuite générer la liste des columns
+dans la partie selector, indiqué comment accéder au donnée que l'on veut afficher
+*/
 const column = [
     {name:'name', selector:(row) => row.name},
     {name:'mail', selector:(row) => row.mail},
@@ -27,6 +38,12 @@ const rows = [
     createData('Cupcake', 'Cupcake', 'Cupcake', 'Cupcake'),
     createData('Gingerbread', 'Gingerbread', 'Gingerbread', 'Gingerbread'),
 ];
+/**
+ * 
+ * Ensuite générer les function update et delete row si besoin et les mettre en props de update
+ * et drop
+ * A noter que la liste sera en amélioration continue
+ */
 const headColor = 'white'
 export default function ListUser() {
     return (
