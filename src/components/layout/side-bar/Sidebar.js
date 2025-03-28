@@ -1,5 +1,5 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
-import React, { startTransition } from 'react'
+import React, { startTransition, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import ToolbarInfo from './toolbar/ToolbarInfo';
@@ -11,11 +11,14 @@ const Sidebar = ({ toggleDrawer }) => {
     const navigate = useNavigate()
     const location = useLocation()
     const person = getProfilStorage()
-
+    const showBackGround = (row) => {
+        return location.pathname === row.link ? '#80d8ff' : 'white'
+    }
     const showMenu = () => {
         // recuperer la page à afficher selon le role de la personne connecter
         return admin_pages
     }
+    
     return (
         <Box
             sx={{ width: 250, zIndex: 1001 }} role="presentation"
@@ -40,12 +43,15 @@ const Sidebar = ({ toggleDrawer }) => {
                                         <Typography>{row.name}</Typography>
                                     </AccordionSummary>
                                     {row.dropDown.map((r, index) =>
-                                        <AccordionDetails key={index}>
+                                        <AccordionDetails key={index}
+                                            sx={{ backgroundColor: showBackGround(row) }}
+
+                                        >
                                             <ListItemButton onClick={() => {
                                                 startTransition(() => {
                                                     navigate(r?.link);
                                                 });
-                                                toggleDrawer()
+                                                // toggleDrawer()
                                             }}
                                                 selected={location.pathname === r.link}
                                             >
@@ -59,12 +65,15 @@ const Sidebar = ({ toggleDrawer }) => {
 
                                 </Accordion>
                             </> :
-                            <ListItem key={index} disablePadding>
+                            <ListItem key={index} disablePadding
+                                sx={{ backgroundColor: showBackGround(row) }}
+
+                            >
                                 <ListItemButton onClick={() => {
                                     startTransition(() => {
                                         navigate(row?.link);
                                     });
-                                    toggleDrawer()
+                                    // toggleDrawer()
                                 }}
                                     selected={location.pathname === row.link}
                                 >
