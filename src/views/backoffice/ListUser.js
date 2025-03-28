@@ -1,16 +1,24 @@
 import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import { Pagination, Stack } from '@mui/material';
+import Mtable from '../../components/List/Mtable';
 
 function createData(name, mail, phone, role) {
-    return { name, mail, phone, role };
+    const res = {
+        name: name,
+        mail: mail,
+        phone: phone,
+        role: {
+            role:role
+        }
+    }
+    return res;
 }
+const column = [
+    {name:'name', selector:(row) => row.name},
+    {name:'mail', selector:(row) => row.mail},
+    {name:'phone', selector:(row) => row.phone},
+    {name:'role', selector:(row) => row.role.role},
+]
 
 const rows = [
     createData('Frozen yoghurt', 'Frozen yoghurt', 'Frozen yoghurt', 'Frozen yoghurt'),
@@ -23,36 +31,13 @@ const headColor = 'white'
 export default function ListUser() {
     return (
         <>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead sx={{ backgroundColor: '#1976d2' }}>
-                        <TableRow>
-                            <TableCell sx={{ color:headColor }}>Nom</TableCell>
-                            <TableCell sx={{ color:headColor }} align="right">Mail</TableCell>
-                            <TableCell sx={{ color:headColor }} align="right">Téléphone</TableCell>
-                            <TableCell sx={{ color:headColor }} align="right">Role</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <TableRow
-                                key={row.name}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.mail}</TableCell>
-                                <TableCell align="right">{row.phone}</TableCell>
-                                <TableCell align="right">{row.role}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-
-            </TableContainer>
-            <Stack spacing={2}>
-                <Pagination count={10} />
+            <Mtable color={headColor} column={column} data={rows} drop={true} update={true} />
+            <Stack spacing={2} alignItems={'center'}>
+                <Pagination count={10}
+                    // page={page}
+                    // onChange={(event, value) => setPage(value)}
+                    // color={'primary'}
+                />
             </Stack>
         </>
     );
