@@ -7,7 +7,7 @@ import Sidebar from "../side-bar/Sidebar";
 // afin d'avoir un design uniforme
 export default function Mcontainer({ Component = null, componentName = null, socket = null }) {
     const isMobile = useMediaQuery('(max-width:600px)');
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
     const [openD, setOpenD] = React.useState(isMobile ? true : false);
     const [drawerWidth, setDrawerWidth] = useState(open ? 'calc(100% - 250px)' : '100%');
 

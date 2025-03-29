@@ -19,7 +19,7 @@ export class CrudCommon extends Api{
         return this.putCall(this.uri+'/'+id, body, true)
     }
     findAll(page = null){
-        const url = page ? this.uri+'?page='+page : this.uri
+        const url = page!==null ? this.uri+'/all/'+page+'/15' : this.uri
         return this.getCall(url, true)
     }
     findOne(id){
