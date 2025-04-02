@@ -9,18 +9,6 @@ import { CustomerOp } from "../../classes/metier/CustomerOp";
 tout d'abord, avoir les données
 */
 
-function createData(name, mail, phone, role) {
-  const res = {
-    name: name,
-    mail: mail,
-    phone: phone,
-    role: {
-      role: role,
-    },
-  };
-  return res;
-}
-
 /*
 Ensuite générer la liste des columns
 dans la partie selector, indiqué comment accéder au donnée que l'on veut afficher
@@ -32,23 +20,6 @@ const column = [
   { name: "role", selector: (row) => row.role },
 ];
 
-const rows = [
-  createData(
-    "Frozen yoghurt",
-    "Frozen yoghurt",
-    "Frozen yoghurt",
-    "Frozen yoghurt"
-  ),
-  createData(
-    "Ice cream sandwich",
-    "Ice cream sandwich",
-    "Ice cream sandwich",
-    "Ice cream sandwich"
-  ),
-  createData("Eclair", "Eclair", "Eclair", "Eclair"),
-  createData("Cupcake", "Cupcake", "Cupcake", "Cupcake"),
-  createData("Gingerbread", "Gingerbread", "Gingerbread", "Gingerbread"),
-];
 /**
  *
  * Ensuite générer les function update et delete row si besoin et les mettre en props de update
@@ -56,7 +27,7 @@ const rows = [
  * A noter que la liste sera en amélioration continue
  */
 const headColor = "white";
-export default function ListUser() {
+export default function ListUser({handleResponse}) {
   const [users, setusers] = useState(null);
   const [page, setPage] = useState(0)
   const [totalPage, setTotalPage] = useState(1)
@@ -70,8 +41,12 @@ export default function ListUser() {
         setTotalPage(data?.data?.totalPages)
         
       })
-      .catch((error) => console.log(error));
-  }, []);
+      .catch((error) => {
+        handleResponse(false, error.message)
+        console.log(error)
+
+      });
+  }, [page]);
 
   return (
     <>
@@ -85,9 +60,9 @@ export default function ListUser() {
       <Stack spacing={2} alignItems={"center"}>
         <Pagination
           count={totalPage}
-          // page={page}
-          // onChange={(event, value) => setPage(value)}
-          // color={'primary'}
+          page={page}
+          onChange={(event, value) => setPage(value)}
+          color={'primary'}
         />
       </Stack>
     </>

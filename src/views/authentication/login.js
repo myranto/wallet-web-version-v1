@@ -1,16 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import FormLabel from '@mui/material/FormLabel';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { Card, SignInContainer } from '../../utils/styled'
+import { Card, SignInContainer } from '../../utils/styled';
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
 import { AuthOperation } from '../../classes/authentication/AuthOperation';
-import Loader from '../../components/loader/Loader';
 import Notification from '../../components/notification/Notification';
+import FormSimple from '../../components/forms/FormSimple';
+import MButton from '../../components/forms/MButton';
 
 
 const Login = () => {
@@ -38,13 +35,13 @@ const Displaying = () => {
     const [success, setSuccess] = useState(true)
     const [notif, setNotif] = useState(false)
     const authOperation = new AuthOperation()
-    const [formValues, setFormValues] = useState({
+    const initForm = {
         mail: 'my.randrianantoandro@gmail.com',
         password: 'myranto',
-    })
+    }
+    const [formValues, setFormValues] = useState(initForm)
 
     const navigate = useNavigate()
-
     const handleInputChange = (event) => {
         const { name, value } = event.target
         setFormValues({
@@ -52,6 +49,10 @@ const Displaying = () => {
             [name]: value,
         })
     }
+    const namefield = [
+        { name: 'mail', libelle: 'E-mail', type: 'email', normal: true },
+        { name: 'password', libelle: 'Mot de passe', type: 'password', normal: true },
+    ];
     const handleSubmit = (event) => {
         setLoading(true)
         authOperation.login(formValues)
@@ -95,65 +96,10 @@ const Displaying = () => {
                     display: 'flex', flexDirection: 'column', width: '100%', gap: 2,
                 }}
             >
-                <FormControl>
-                    <FormLabel htmlFor="email">Email</FormLabel>
-                    <TextField
-                        id="email"
-                        type="email"
-                        name="mail"
-                        value={formValues.mail}
-                        onChange={handleInputChange}
-                        placeholder="email@email.com"
-                        autoComplete="email"
-                        autoFocus
-                        required
-                        fullWidth
-                        variant="outlined"
-                        color={'primary'}
-                        sx={{ ariaLabel: 'email' }}
-                    />
-                </FormControl>
-                <FormControl>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <FormLabel htmlFor="password">Mot de passe</FormLabel>
-                    </Box>
-                    <TextField
-                        name="password"
-                        value={formValues.password}
-                        onChange={handleInputChange}
-                        placeholder="••••••"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                        autoFocus
-                        required
-                        fullWidth
-                        variant="outlined"
-                        color={'primary'}
-                    />
-                </FormControl>
-                {!loading &&
-                    <Button
-                        type="button"
-                        fullWidth
-                        variant="contained"
-                        onClick={handleSubmit}
-                    >
-                        Connexion
-                    </Button>
-                }
-                 <Loader onLoad={loading} />
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        '& > *': {
-                            m: 1,
-                        },
-                    }}
-                >
-                </Box>
+                <FormSimple width='100%' variant={'outlined'} fields={namefield} form={formValues} handleInput={handleInputChange} />
+                <MButton submit={handleSubmit} width='100%' libelle='Connexion' loading={loading} />
+                {/* <Loader onLoad={loading} /> */}
+               
                 {notif && <Notification message={message} success={success} setNotif={setNotif} notif={notif} />}
 
             </Box>

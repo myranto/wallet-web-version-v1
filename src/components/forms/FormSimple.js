@@ -1,7 +1,7 @@
-import { Box, Button, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { Box, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React from 'react'
 
-const FormSimple = ({ fields, handleInput, form, submit, libelle, variant }) => {
+const FormSimple = ({ fields, handleInput, form, variant,  width = '50%' }) => {
     return (
         <Box component={'form'} noValidate sx={{
             display: 'flex', flexDirection: 'column', width: '100%', gap: 2, alignItems: 'center'
@@ -10,13 +10,13 @@ const FormSimple = ({ fields, handleInput, form, submit, libelle, variant }) => 
                 <>
                     {
                         row?.normal &&
-                        <FormControl key={index} sx={{ width: '50%', maxWidth: '100%', display: 'flex', alignItems: 'flex-start' }}>
+                        <FormControl key={index} sx={{ width: width, maxWidth: '100%', display: 'flex', alignItems: 'flex-start' }}>
                             <FormLabel htmlFor={row.name}>{row.libelle}</FormLabel>
                             <TextField
                                 name={row.name}
                                 value={form[row.name]}
                                 onChange={handleInput}
-                                placeholder={'Entrez '+row.libelle}
+                                placeholder={'Entrez ' + row.libelle}
                                 type={row.type}
                                 id={row.name}
                                 autoComplete={row.libelle}
@@ -28,7 +28,7 @@ const FormSimple = ({ fields, handleInput, form, submit, libelle, variant }) => 
                         </FormControl>
                     }
                     {!row?.normal && row?.type === 'select' &&
-                        <Box sx={{ width: '50%', maxWidth: '100%', alignItems:'center'}}>
+                        <Box sx={{ width: width, maxWidth: '100%', alignItems: 'center' }}>
                             <FormControl variant={variant} fullWidth key={index}  >
                                 <InputLabel id="demo-simple-select-standard-label">{row.libelle}</InputLabel>
                                 <Select
@@ -50,9 +50,7 @@ const FormSimple = ({ fields, handleInput, form, submit, libelle, variant }) => 
 
                 </>
             ))}
-            <Button sx={{ width: '50%', maxWidth: '100%' }} type="button" fullWidth variant="contained" onClick={submit}>
-                {libelle}
-            </Button>
+            
         </Box>
     )
 }
