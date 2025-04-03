@@ -1,10 +1,10 @@
 import { Box, Card, CardContent, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import ListUser from './ListUser'
-import FormSimple from '../../components/forms/FormSimple'
-import MButton from '../../components/forms/MButton'
-import Notification from '../../components/notification/Notification'
-import useNotification from '../../components/notification/useNotification'
+import FormSimple from '../../../components/forms/FormSimple'
+import MButton from '../../../components/forms/MButton'
+import Notification from '../../../components/notification/Notification'
+import useNotification from '../../../components/notification/useNotification'
 
 /*
 Utilisation de form généralisé simple
@@ -42,10 +42,10 @@ const Users = () => {
         les autres types serant accessibles au prochains amélioration
     */
     const namefield = [
-        { name: 'name', libelle: 'Nom', type: 'text', normal: true },
-        { name: 'mail', libelle: 'E-mail', type: 'email', normal: true },
-        { name: 'phone', libelle: 'Téléphone', type: 'text', normal: true },
-        { name: 'role', libelle: 'Role', type: 'select', normal: false, items: roleItems },
+        { name: 'name', libelle: 'Nom :', type: 'text', normal: true },
+        { name: 'mail', libelle: 'E-mail :', type: 'email', normal: true },
+        { name: 'phone', libelle: 'Téléphone :', type: 'text', normal: true },
+        { name: 'role', libelle: 'Role :', type: 'select', normal: false, items: roleItems },
     ];
     // générer la function qui valide l'opération
     const submit = (e) => {

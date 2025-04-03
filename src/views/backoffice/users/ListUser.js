@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Pagination, Stack } from "@mui/material";
-import Mtable from "../../components/List/Mtable";
-import { CustomerOp } from "../../classes/metier/CustomerOp";
+import Mtable from "../../../components/List/Mtable";
+import { CustomerOp } from "../../../classes/metier/CustomerOp";
 
 // utilisation de la table généralisé
 
@@ -14,10 +14,10 @@ Ensuite générer la liste des columns
 dans la partie selector, indiqué comment accéder au donnée que l'on veut afficher
 */
 const column = [
-  { name: "name", selector: (row) => row.name },
-  { name: "mail", selector: (row) => row.mail },
-  { name: "phone", selector: (row) => row.phone },
-  { name: "role", selector: (row) => row.role },
+  { name: "Nom", selector: (row) => row.name },
+  { name: "E-mail", selector: (row) => row.mail },
+  { name: "Téléphone", selector: (row) => row.phone },
+  { name: "Role", selector: (row) => row.role },
 ];
 
 /**
