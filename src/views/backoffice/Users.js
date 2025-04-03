@@ -12,6 +12,7 @@ tout d'abord initialiser la form, c'est à dire l'objet
 */
 const Users = () => {
     const handleOperation = useNotification()
+    const [loading, setLoading] = useState(false)
 
     const initForm = {
         name: '',
@@ -50,6 +51,10 @@ const Users = () => {
     const submit = (e) => {
         e.preventDefault()
         console.log(form)
+        setLoading(true)
+        setTimeout(() => {
+            setLoading(false)
+        }, 300)
     }
 
     return (
@@ -61,7 +66,7 @@ const Users = () => {
                 <Box component={'form'} noValidate sx={{
                     display: 'flex', flexDirection: 'column', width: '100%', padding: 1, alignItems: 'center'
                 }}>
-                    <MButton submit={submit} width='51%' libelle='Valider' loading={handleOperation.getLoading} />
+                    <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
                 </Box>
                 <hr></hr>
                 <ListUser handleResponse={handleOperation.handleResponse} />

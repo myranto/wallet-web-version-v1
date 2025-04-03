@@ -36,6 +36,7 @@ const Displaying = () => {
         password: 'myranto',
     }
     const [formValues, setFormValues] = useState(initForm)
+    const [loading, setLoading] = useState(false)
     const handleOperation = useNotification()
     const navigate = useNavigate()
     const handleInputChange = (event) => {
@@ -50,9 +51,10 @@ const Displaying = () => {
         { name: 'password', libelle: 'Mot de passe', type: 'password', normal: true },
     ];
     const handleSubmit = (event) => {
-        handleOperation.setLoading(true)
+        setLoading(true)
         authOperation.login(formValues)
             .then((data) => {
+                setLoading(false)
                 handleOperation.handleResponse(true, 'Connexion réussi')
                 // login(data?.data?.user)
                 // localStorage.setItem(loggedApp, JSON.stringify(data?.data?.user))
@@ -65,6 +67,7 @@ const Displaying = () => {
 
             })
             .catch((error) => {
+                setLoading(false)
                 console.log(error);
                 handleOperation.handleResponse(false, error.message)
             })
@@ -87,7 +90,7 @@ const Displaying = () => {
                 }}
             >
                 <FormSimple width='100%' variant={'outlined'} fields={namefield} form={formValues} handleInput={handleInputChange} />
-                <MButton submit={handleSubmit} width='100%' libelle='Connexion' loading={handleOperation.getLoading} />
+                <MButton submit={handleSubmit} width='100%' libelle='Connexion' loading={loading} />
 
                 {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} /> }
             </Box>

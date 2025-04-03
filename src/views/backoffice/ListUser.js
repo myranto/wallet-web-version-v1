@@ -28,21 +28,25 @@ const column = [
  */
 const headColor = "white";
 export default function ListUser({handleResponse}) {
+  const [loading, setLoading] = useState(false)
   const [users, setusers] = useState(null);
   const [page, setPage] = useState(0)
   const [totalPage, setTotalPage] = useState(1)
   const userOp = new CustomerOp();
 
   useEffect(() => {
+    setLoading(true)
     userOp
       .findAll(page)
       .then((data) => {
+        setLoading(false)
         setusers(data?.data?.content);
         setTotalPage(data?.data?.totalPages)
         
       })
       .catch((error) => {
         handleResponse(false, error.message)
+        setLoading(false)
         console.log(error)
 
       });
@@ -56,6 +60,7 @@ export default function ListUser({handleResponse}) {
         data={users}
         drop={true}
         update={true}
+        loading={loading}
       />
       <Stack spacing={2} alignItems={"center"}>
         <Pagination

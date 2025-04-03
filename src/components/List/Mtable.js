@@ -1,9 +1,10 @@
-import { Paper, Table, TableBody, TableContainer, TableHead } from '@mui/material'
+import { Paper, Table, TableBody, TableContainer, TableHead, Typography } from '@mui/material'
 import React from 'react'
 import Mtbody from './Mtbody'
 import MtHeader from './Mtheader'
+import TSkeleton from '../loader/TSkeleton'
 
-const Mtable = ({ column, data, update, drop, color }) => {
+const Mtable = ({ column, data, update, drop, color, loading }) => {
   const action = drop || update ? true : false
   return (
     <TableContainer component={Paper}>
@@ -12,9 +13,19 @@ const Mtable = ({ column, data, update, drop, color }) => {
           <MtHeader color={color} data={column} action={action} />
         </TableHead>
         <TableBody>
-          <Mtbody column={column} data={data} drop={drop} update={update} />
+          {!loading ? <Mtbody column={column} data={data} drop={drop} update={update} />
+            : <TSkeleton column={column} drop={drop} update={update} />
+          }
         </TableBody>
       </Table>
+      {!loading && (data?.length <= 0 || !data) &&
+        <Typography
+          component="h1"
+          variant="h4"
+          sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)',  textAlign: 'center' }}
+        >
+          Aucune donnée!
+        </Typography>}
 
     </TableContainer>
   )
