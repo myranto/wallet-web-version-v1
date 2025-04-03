@@ -8,6 +8,7 @@ import { AuthOperation } from '../../classes/authentication/AuthOperation';
 import Notification from '../../components/notification/Notification';
 import FormSimple from '../../components/forms/FormSimple';
 import MButton from '../../components/forms/MButton';
+import useNotification from '../../components/notification/useNotification';
 
 
 const Login = () => {
@@ -29,17 +30,13 @@ const Login = () => {
 }
 
 const Displaying = () => {
-    const [loading, setLoading] = useState(false)
-    const [message, setMessage] = useState(null)
-    const [success, setSuccess] = useState(true)
-    const [notif, setNotif] = useState(false)
     const authOperation = new AuthOperation()
     const initForm = {
         mail: 'my.randrianantoandro@gmail.com',
         password: 'myranto',
     }
     const [formValues, setFormValues] = useState(initForm)
-
+    const handleOperation = useNotification()
     const navigate = useNavigate()
     const handleInputChange = (event) => {
         const { name, value } = event.target
@@ -53,10 +50,10 @@ const Displaying = () => {
         { name: 'password', libelle: 'Mot de passe', type: 'password', normal: true },
     ];
     const handleSubmit = (event) => {
-        setLoading(true)
+        handleOperation.setLoading(true)
         authOperation.login(formValues)
             .then((data) => {
-                handleResponse(true, 'Connexion réussi')
+                handleOperation.handleResponse(true, 'Connexion réussi')
                 // login(data?.data?.user)
                 // localStorage.setItem(loggedApp, JSON.stringify(data?.data?.user))
                 // localStorage.setItem(TokenUser, data?.token)
@@ -69,15 +66,9 @@ const Displaying = () => {
             })
             .catch((error) => {
                 console.log(error);
-                handleResponse(false, error.message)
+                handleOperation.handleResponse(false, error.message)
             })
     };
-    const handleResponse = (success, message) => {
-        setLoading(false)
-        setSuccess(success)
-        setNotif(true)
-        setMessage(message)
-    }
     return (
         <>
             <Typography
@@ -96,10 +87,9 @@ const Displaying = () => {
                 }}
             >
                 <FormSimple width='100%' variant={'outlined'} fields={namefield} form={formValues} handleInput={handleInputChange} />
-                <MButton submit={handleSubmit} width='100%' libelle='Connexion' loading={loading} />
+                <MButton submit={handleSubmit} width='100%' libelle='Connexion' loading={handleOperation.getLoading} />
 
-                {notif && <Notification message={message} success={success} setNotif={setNotif} notif={notif} />}
-
+                {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} /> }
             </Box>
         </>
     )

@@ -4,22 +4,21 @@ import ListUser from './ListUser'
 import FormSimple from '../../components/forms/FormSimple'
 import MButton from '../../components/forms/MButton'
 import Notification from '../../components/notification/Notification'
+import useNotification from '../../components/notification/useNotification'
 
 /*
 Utilisation de form généralisé simple
 tout d'abord initialiser la form, c'est à dire l'objet
 */
 const Users = () => {
-    const [loading, setLoading] = useState(false)
+    const handleOperation = useNotification()
+
     const initForm = {
         name: '',
         mail: '',
         phone: '',
         role: ''
     }
-    const [message, setMessage] = useState(null)
-    const [success, setSuccess] = useState(true)
-    const [notif, setNotif] = useState(false)
     const [form, setForm] = useState(initForm)
     /*
     créé la function qui update la valeur de form
@@ -47,12 +46,6 @@ const Users = () => {
         { name: 'phone', libelle: 'Téléphone', type: 'text', normal: true },
         { name: 'role', libelle: 'Role', type: 'select', normal: false, items: roleItems },
     ];
-    const handleResponse = (success, message) => {
-        setLoading(false)
-        setSuccess(success)
-        setNotif(true)
-        setMessage(message)
-    }
     // générer la function qui valide l'opération
     const submit = (e) => {
         e.preventDefault()
@@ -68,11 +61,11 @@ const Users = () => {
                 <Box component={'form'} noValidate sx={{
                     display: 'flex', flexDirection: 'column', width: '100%', padding: 1, alignItems: 'center'
                 }}>
-                    <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
+                    <MButton submit={submit} width='51%' libelle='Valider' loading={handleOperation.getLoading} />
                 </Box>
                 <hr></hr>
-                <ListUser handleResponse={handleResponse} />
-                {notif && <Notification message={message} success={success} setNotif={setNotif} notif={notif} />}
+                <ListUser handleResponse={handleOperation.handleResponse} />
+                {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
 
             </CardContent>
         </Card>
