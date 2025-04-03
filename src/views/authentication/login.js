@@ -52,7 +52,6 @@ const Displaying = () => {
                 // login(data?.data?.user)
                 // localStorage.setItem(loggedApp, JSON.stringify(data?.data?.user))
                 // localStorage.setItem(TokenUser, data?.token)
-
                 // const route = data?.data?.user?.role === 1 ? '/home/admin' : '/home/request'
                 setTimeout(() => {
                     navigate('/home')
@@ -89,5 +88,4 @@ const Displaying = () => {
         </>
     )
 }
-
 export default Login
