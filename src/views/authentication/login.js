@@ -9,6 +9,7 @@ import Notification from '../../components/notification/Notification';
 import FormSimple from '../../components/forms/FormSimple';
 import MButton from '../../components/forms/MButton';
 import useNotification from '../../components/notification/useNotification';
+import useForm from '../../components/forms/useForm';
 
 
 const Login = () => {
@@ -17,12 +18,11 @@ const Login = () => {
     return (
 
         <SignInContainer>
-            {!isMobile &&
+            {!isMobile ?
                 <Card variant="outlined">
                     <Displaying />
                 </Card>
-            }
-            {isMobile &&
+                :
                 <Displaying />
             }
         </SignInContainer>
@@ -35,24 +35,17 @@ const Displaying = () => {
         mail: 'my.randrianantoandro@gmail.com',
         password: 'myranto',
     }
-    const [formValues, setFormValues] = useState(initForm)
+    const forms = useForm(initForm)
     const [loading, setLoading] = useState(false)
     const handleOperation = useNotification()
     const navigate = useNavigate()
-    const handleInputChange = (event) => {
-        const { name, value } = event.target
-        setFormValues({
-            ...formValues,
-            [name]: value,
-        })
-    }
     const namefield = [
         { name: 'mail', libelle: 'E-mail', type: 'email', normal: true },
         { name: 'password', libelle: 'Mot de passe', type: 'password', normal: true },
     ];
     const handleSubmit = (event) => {
         setLoading(true)
-        authOperation.login(formValues)
+        authOperation.login(forms.getForm)
             .then((data) => {
                 setLoading(false)
                 handleOperation.handleResponse(true, 'Connexion réussi')
@@ -89,10 +82,9 @@ const Displaying = () => {
                     display: 'flex', flexDirection: 'column', width: '100%', gap: 2,
                 }}
             >
-                <FormSimple width='100%' variant={'outlined'} fields={namefield} form={formValues} handleInput={handleInputChange} />
+                <FormSimple width='100%' variant={'outlined'} fields={namefield} form={forms.getForm} handleInput={forms.handleInputChange} />
                 <MButton submit={handleSubmit} width='100%' libelle='Connexion' loading={loading} />
-
-                {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} /> }
+                {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
             </Box>
         </>
     )
