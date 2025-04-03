@@ -13,7 +13,6 @@ import MButton from '../../components/forms/MButton';
 const Login = () => {
     const isMobile = useMediaQuery('(max-width:600px)');
 
-
     return (
 
         <SignInContainer>
@@ -98,8 +97,7 @@ const Displaying = () => {
             >
                 <FormSimple width='100%' variant={'outlined'} fields={namefield} form={formValues} handleInput={handleInputChange} />
                 <MButton submit={handleSubmit} width='100%' libelle='Connexion' loading={loading} />
-                {/* <Loader onLoad={loading} /> */}
-               
+
                 {notif && <Notification message={message} success={success} setNotif={setNotif} notif={notif} />}
 
             </Box>

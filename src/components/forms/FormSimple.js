@@ -1,7 +1,7 @@
 import { Box, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React from 'react'
 
-const FormSimple = ({ fields, handleInput, form, variant,  width = '50%' }) => {
+const FormSimple = ({ fields, handleInput, form, variant, width = '50%' }) => {
     return (
         <Box component={'form'} noValidate sx={{
             display: 'flex', flexDirection: 'column', width: '100%', gap: 2, alignItems: 'center'
@@ -47,10 +47,9 @@ const FormSimple = ({ fields, handleInput, form, variant,  width = '50%' }) => {
                             </FormControl>
                         </Box>
                     }
-
                 </>
             ))}
-            
+
         </Box>
     )
 }
