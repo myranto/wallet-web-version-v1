@@ -5,6 +5,7 @@ import FormSimple from '../../../components/forms/FormSimple'
 import MButton from '../../../components/forms/MButton'
 import Notification from '../../../components/notification/Notification'
 import ListAccountType from './ListAccountType'
+import useForm from '../../../components/forms/useForm'
 
 const AccountType = () => {
   const handleOperation = useNotification()
@@ -13,21 +14,14 @@ const AccountType = () => {
     type: '',
     value: ''
   }
-  const [form, setForm] = useState(initForm)
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
+  const forms = useForm(initForm)
   const namefield = [
     { name: 'type', libelle: 'Type de compte :', type: 'text', normal: true },
     { name: 'value', libelle: 'Accronyme :', type: 'text', normal: true },
   ];
   const submit = (e) => {
     e.preventDefault()
-    console.log(form)
+    console.log(forms.getForm)
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
@@ -38,7 +32,7 @@ const AccountType = () => {
       <CardContent sx={{ overflowY: 'hidden' }}>
         {/* <BreadCrumbs /> */}
         <Typography variant='h3' padding={2}>Page Type de compte</Typography>
-        <FormSimple variant={'outlined'} fields={namefield} submit={submit} form={form} handleInput={handleInputChange} libelle={'Valider'} />
+        <FormSimple variant={'outlined'} fields={namefield} submit={submit} form={forms.getForm} handleInput={forms.handleInputChange} libelle={'Valider'} />
         <Box component={'form'} noValidate sx={{
           display: 'flex', flexDirection: 'column', width: '100%', padding: 1, alignItems: 'center'
         }}>

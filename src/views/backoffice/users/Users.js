@@ -5,6 +5,7 @@ import FormSimple from '../../../components/forms/FormSimple'
 import MButton from '../../../components/forms/MButton'
 import Notification from '../../../components/notification/Notification'
 import useNotification from '../../../components/notification/useNotification'
+import useForm from '../../../components/forms/useForm'
 
 /*
 Utilisation de form généralisé simple
@@ -13,24 +14,14 @@ tout d'abord initialiser la form, c'est à dire l'objet
 const Users = () => {
     const handleOperation = useNotification()
     const [loading, setLoading] = useState(false)
-
     const initForm = {
         name: '',
         mail: '',
         phone: '',
         role: ''
     }
-    const [form, setForm] = useState(initForm)
-    /*
-    créé la function qui update la valeur de form
-    */
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setForm({
-            ...form,
-            [name]: value,
-        });
-    };
+    const forms = useForm(initForm)
+
     const roleItems = [
         { name: 'Administrateur', value: 'A' },
         { name: 'Client', value: 'C' },
@@ -50,7 +41,7 @@ const Users = () => {
     // générer la function qui valide l'opération
     const submit = (e) => {
         e.preventDefault()
-        console.log(form)
+        console.log(forms.getForm)
         setLoading(true)
         setTimeout(() => {
             setLoading(false)
@@ -62,7 +53,7 @@ const Users = () => {
             <CardContent sx={{ overflowY: 'hidden' }}>
                 {/* <BreadCrumbs /> */}
                 <Typography variant='h3' padding={2}>Page utilisateur</Typography>
-                <FormSimple variant={'outlined'} fields={namefield} submit={submit} form={form} handleInput={handleInputChange} libelle={'Valider'} />
+                <FormSimple variant={'outlined'} fields={namefield} submit={submit} form={forms.getForm} handleInput={forms.handleInputChange} libelle={'Valider'} />
                 <Box component={'form'} noValidate sx={{
                     display: 'flex', flexDirection: 'column', width: '100%', padding: 1, alignItems: 'center'
                 }}>
