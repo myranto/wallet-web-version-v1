@@ -28,9 +28,7 @@ const AccountType = () => {
     }, 300)
   }
   return (
-    <Card sx={{ maxWidth: '100vw' }}>
-      <CardContent sx={{ overflowY: 'hidden' }}>
-        {/* <BreadCrumbs /> */}
+    <>
         <Typography variant='h3' padding={2}>Page Type de compte</Typography>
         <FormSimple variant={'outlined'} fields={namefield} submit={submit} form={forms.getForm} handleInput={forms.handleInputChange} libelle={'Valider'} />
         <Box component={'form'} noValidate sx={{
@@ -41,8 +39,7 @@ const AccountType = () => {
         <hr></hr>
         <ListAccountType handleResponse={handleOperation.handleResponse} />
         {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
-      </CardContent>
-    </Card>
+     </>
   )
 }
 

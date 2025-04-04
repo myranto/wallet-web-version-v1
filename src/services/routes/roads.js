@@ -8,6 +8,7 @@ const Login = React.lazy(() => import('../../views/authentication/login'))
 const Index = React.lazy(() => import('../../views/index'))
 const Users = React.lazy(() => import('../../views/backoffice/users/Users'))
 const AccountType = React.lazy(() => import('../../views/backoffice/account_type/AccountType'))
+const Account = React.lazy(() => import('../../views/backoffice/account/Account'))
 const Loading = () => {
   return (
     <Backdrop
@@ -30,7 +31,8 @@ const Roads = () => {
           <Route exact path="/home" name="Page home" element={<PrivateRoute role={1} Component={Home} componentName={"Home"} />} />
           <Route path={"/index"} element={<PrivateRoute role={1} Component={Index} componentName={"Index"} />} />
           <Route path={"/users"} element={<PrivateRoute role={1} Component={Users} componentName={"User"} />} />
-          <Route path={"/home/acount_type"} element={<PrivateRoute role={1} Component={AccountType} componentName={"Account type"} />} />
+          <Route path={"/home/account_type"} element={<PrivateRoute role={1} Component={AccountType} componentName={"Account type"} />} />
+          <Route path={"/home/account"} element={<PrivateRoute role={1} Component={Account} componentName={"Account"} />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

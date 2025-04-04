@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import { AccTypeOP } from '../../../classes/metier/AccTypeOP';
-import { Pagination, Stack } from '@mui/material';
+import { AccountOP } from '../../../classes/metier/AccountOP';
 import Mtable from '../../../components/List/Mtable';
-
+import { Pagination, Stack } from '@mui/material';
 
 const column = [
-  { name: "Type de compte", selector: (row) => row.type },
-  { name: "Accronyme", selector: (row) => row.value },
-  { name: "Date de création", selector: (row) => row.creation_date },
+  { name: "Type de compte", selector: (row) => row.type_id },
+  { name: "Solde actuel", selector: (row) => row.current_amount },
+  { name: "Date de solde", selector: (row) => row.date_amount }
 ];
 const headColor = "white";
-const ListAccountType = ({ handleResponse }) => {
+
+const ListAccount = ({ handleResponse }) => {
   const [loading, setLoading] = useState(false)
-  const [type, setType] = useState(null)
+  const [account, setAccount] = useState(null)
   const [page, setPage] = useState(0)
   const [totalPage, setTotalPage] = useState(1)
-  const acctype = new AccTypeOP()
+  const accountOP = new AccountOP()
+
 
   useEffect(() => {
     setLoading(true)
-    acctype
+    accountOP
       .findAll(page)
       .then((data) => {
         setLoading(false)
-        setType(data?.data?.content);
+        setAccount(data?.data?.content);
         setTotalPage(data?.data?.totalPages)
       })
       .catch((error) => {
@@ -39,7 +40,7 @@ const ListAccountType = ({ handleResponse }) => {
       <Mtable
         color={headColor}
         column={column}
-        data={type}
+        data={account}
         drop={true}
         update={true}
         loading={loading}
@@ -56,4 +57,4 @@ const ListAccountType = ({ handleResponse }) => {
   )
 }
 
-export default ListAccountType
+export default ListAccount

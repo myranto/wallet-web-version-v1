@@ -5,7 +5,7 @@ export const admin_pages = [
     { name: 'Utilisateurs', link: '/users', icon: <PeopleIcon /> },
     {
         name: 'Comptes', icon: <Computer />, dropDown: [
-            { name: 'Types de compte', link: '/home/acount_type', icon: <AccountBalanceWallet /> },
+            { name: 'Types de compte', link: '/home/account_type', icon: <AccountBalanceWallet /> },
             { name: 'Mes comptes', link: '/home/account', icon: <AccountBalance /> },
         ]
     },
