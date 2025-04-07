@@ -1,5 +1,5 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
-import React, { startTransition, useEffect, useState } from 'react'
+import React, { startTransition } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import ToolbarInfo from './toolbar/ToolbarInfo';
@@ -18,7 +18,7 @@ const Sidebar = ({ toggleDrawer }) => {
         // recuperer la page à afficher selon le role de la personne connecter
         return admin_pages
     }
-    
+ 
     return (
         <Box
             sx={{ width: 250, zIndex: 1001 }} role="presentation"

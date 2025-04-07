@@ -6,11 +6,11 @@ import Mtable from '../../../components/List/Mtable';
 
 const column = [
   { name: "Type de compte", selector: (row) => row.type },
-  { name: "Accronyme", selector: (row) => row.value },
-  { name: "Date de création", selector: (row) => row.creation_date },
+  { name: "Accronyme", selector: (row) => row.code },
+  { name: "Date de création", selector: (row) => new Date(row.creation_date).toLocaleDateString() },
 ];
 const headColor = "white";
-const ListAccountType = ({ handleResponse }) => {
+const ListAccountType = ({ handleResponse, refresh }) => {
   const [loading, setLoading] = useState(false)
   const [type, setType] = useState(null)
   const [page, setPage] = useState(0)
@@ -32,7 +32,7 @@ const ListAccountType = ({ handleResponse }) => {
         console.log(error)
 
       });
-  }, [page])
+  }, [page, refresh])
 
   return (
     <>

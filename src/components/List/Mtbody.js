@@ -1,23 +1,24 @@
 import { Delete, Edit } from '@mui/icons-material'
 import { IconButton, TableCell, TableRow } from '@mui/material'
 import React from 'react'
+import { StyledTableRow, StyledTableCell } from '../../utils/styled';
 
 const Mtbody = ({ data, column, update, drop }) => {
     return (
         <>
             {data?.map((row, index) => (
-                <TableRow
+                <StyledTableRow
                     key={index}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                     {column?.map((col, i) =>
-                        <TableCell align='left' component="th" key={i} scope="row">
+                        <StyledTableCell align='left'  key={i} scope="row">
                             {col?.selector(row)}
-                        </TableCell>
+                        </StyledTableCell>
                     )}
                     {(update || drop) &&
                         <>
-                            <TableCell align='left' component={'th'} scope='row'>
+                            <StyledTableCell align='center' component={'th'} scope='row'>
                                 {update &&
                                     <IconButton
                                         size="large"
@@ -46,10 +47,10 @@ const Mtbody = ({ data, column, update, drop }) => {
                                         <Delete />
                                     </IconButton>
                                 }
-                            </TableCell>
+                            </StyledTableCell>
                         </>
                     }
-                </TableRow>
+                </StyledTableRow>
             ))}
         </>
     )
