@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import useNotification from '../../../components/notification/useNotification'
-import { Box, setRef, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import FormSimple from '../../../components/forms/FormSimple'
 import MButton from '../../../components/forms/MButton'
 import Notification from '../../../components/notification/Notification'
