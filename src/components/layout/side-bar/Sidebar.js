@@ -31,11 +31,12 @@ const Sidebar = ({ toggleDrawer }) => {
                         {row?.dropDown ?
 
                             <>
-                                <Accordion key={index} sx={{ boxShadow: 'none', '&:before': { display: 'none' } }} >
+                                <Accordion key={index} sx={{ boxShadow: 'none', '&:before': { display: 'none' }, padding:0, margin:0 }} >
                                     <AccordionSummary
                                         expandIcon={<ExpandMoreIcon />}
                                         aria-controls="panel2-content"
                                         id="panel2-header"
+                                        
                                     >
                                         <ListItemIcon>
                                             {row?.icon}
@@ -44,7 +45,7 @@ const Sidebar = ({ toggleDrawer }) => {
                                     </AccordionSummary>
                                     {row.dropDown.map((r, index) =>
                                         <AccordionDetails key={index}
-                                            sx={{ backgroundColor: showBackGround(row) }}
+                                            sx={{ backgroundColor: showBackGround(row), padding:0, marginLeft:1 }}
 
                                         >
                                             <ListItemButton onClick={() => {

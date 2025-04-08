@@ -1,4 +1,4 @@
-import {AccountBalance, AccountBalanceWallet, Chat, Computer, HomeRounded, List, ListAltRounded, MonetizationOn, Moving, Payments, PriceChange, Savings, SupportAgent,  } from "@mui/icons-material";
+import {AccountBalance, AccountBalanceWallet, Chat, Computer, CreditCard, HomeRounded, List, ListAltRounded, MonetizationOn, Money, Moving, Payments, PriceChange, Savings, SupportAgent, TransferWithinAStation,  } from "@mui/icons-material";
 import PeopleIcon from '@mui/icons-material/People'
 export const admin_pages = [
     { name: 'Accueil', link: '/home', icon: <HomeRounded /> },
@@ -15,14 +15,13 @@ export const admin_pages = [
             { name: 'Mes charges', link: '/home/charge', icon: <Payments /> },
         ]
     },
-    { name: 'Type Opérations', link: '/home/type_operation', icon: <Moving /> },
-    { name: 'Demandes', link: '/home/request', icon: <ListAltRounded /> },
     {
-        name: 'Ordinateur', icon: <Computer />, dropDown: [
-            { name: 'Liste ordinateur', link: '/home/desktop', icon: <List /> },
-            { name: 'Controle', link: '/home/desktop/controle', icon: <SupportAgent /> },
+        name: 'Opérations', icon: <Money />, dropDown: [
+            { name: 'Types d\'Opérations ', link: '/home/type_operation', icon: <Moving /> },
+            { name: 'Mes crédits', link: '/home/credit', icon: <CreditCard /> },
+            { name: 'Mes transferts', link: '/home/transfer', icon: <TransferWithinAStation /> },
         ]
-    },
+    }
 ];
 
 export const customer_pages = [
