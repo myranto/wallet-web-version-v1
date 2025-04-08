@@ -18,7 +18,7 @@ const Mtbody = ({ data, column, update, drop }) => {
                     )}
                     {(update || drop) &&
                         <>
-                            <StyledTableCell align='center' component={'th'} scope='row'>
+                            <StyledTableCell align='right' component={'th'} scope='row'>
                                 {update &&
                                     <IconButton
                                         size="large"

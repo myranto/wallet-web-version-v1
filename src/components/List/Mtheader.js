@@ -8,7 +8,7 @@ const Mtheader = ({data, color, action}) => {
                 <TableCell align='left' sx={{ color: color }}>{row?.name}</TableCell>
             )}
             {action && 
-                <TableCell align='center' sx={{ color: color }}>action</TableCell>
+                <TableCell align='right' sx={{ color: color }}>action</TableCell>
             }
         </TableRow>
     )

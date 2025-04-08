@@ -1,37 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import { AccountOP } from '../../../classes/metier/AccountOP';
-import Mtable from '../../../components/List/Mtable';
-import { Pagination, Stack } from '@mui/material';
+import { TypeChargeOP } from '../../../classes/metier/TypeChargeOP'
 import useUpdate from '../../../components/update/useUpdate';
 import useDelete from '../../../components/delete/useDelete';
 import DeleteElement from '../../../components/delete/DeleteElement';
 import UpdateElement from '../../../components/update/UpdateElement';
-import { getNameField } from '../../../utils/function';
+import Mtable from '../../../components/List/Mtable';
+import { Pagination, Stack } from '@mui/material';
 
+const column = [
+  { name: "Identifiant", selector: (row) => row.id },
+  { name: "Type de charge", selector: (row) => row.libelle },
+  { name: "Accronyme", selector: (row) => row.code },
+  { name: "Date de création", selector: (row) => new Date(row.creation_date).toLocaleDateString() },
+];
 
 const headColor = "white";
-
-const ListAccount = ({ handleResponse, refresh, setRefresh, nameFields, account_types }) => {
+const ListTypeCharge = ({ handleResponse, refresh, setRefresh, nameFields }) => {
   const [loading, setLoading] = useState(false)
-  const [account, setAccount] = useState(null)
+  const [type, setType] = useState(null)
   const [page, setPage] = useState(0)
   const [totalPage, setTotalPage] = useState(1)
-  const accountOP = new AccountOP()
+  const typeChargeOp = new TypeChargeOP()
   const deleteFunction = useDelete()
   const updateFunction = useUpdate()
-
-  const column = [
-    { name: "Type de compte", selector: (row) => getNameField(row.type_id, account_types) },
-    { name: "Solde actuel", selector: (row) => row.current_amount },
-    { name: "Date de solde", selector: (row) => new Date(row.date_amount).toLocaleDateString() }
-  ];
   useEffect(() => {
     setLoading(true)
-    accountOP
+    typeChargeOp
       .findAll(page)
       .then((data) => {
         setLoading(false)
-        setAccount(data?.data?.content);
+        console.log(data?.data?.content?.length);
+        
+        setType(data?.data?.content);
         setTotalPage(data?.data?.totalPages)
       })
       .catch((error) => {
@@ -42,7 +42,7 @@ const ListAccount = ({ handleResponse, refresh, setRefresh, nameFields, account_
       });
   }, [page, refresh])
   const deleteOne = () => {
-    accountOP.deleteOne(deleteFunction.getId)
+    typeChargeOp.deleteOne(deleteFunction.getId)
       .then((data) => {
         handleResponse(true, data?.data)
         deleteFunction.handleClick()
@@ -54,7 +54,7 @@ const ListAccount = ({ handleResponse, refresh, setRefresh, nameFields, account_
       });
   }
   const updateOne = (updateForm) => {
-    accountOP.updateOne(updateForm.getForm)
+    typeChargeOp.updateOne(updateForm.getForm)
       .then((data) => {
         handleResponse(true, data?.data)
         updateFunction.handleClick()
@@ -71,7 +71,7 @@ const ListAccount = ({ handleResponse, refresh, setRefresh, nameFields, account_
       <Mtable
         color={headColor}
         column={column}
-        data={account}
+        data={type}
         drop={deleteFunction.drop}
         update={updateFunction.openUpdate}
         loading={loading}
@@ -84,11 +84,11 @@ const ListAccount = ({ handleResponse, refresh, setRefresh, nameFields, account_
           color={'primary'}
         />
       </Stack>
-      <DeleteElement 
-      open={deleteFunction.getOpen} message={'Voulez-vous vraiment supprimer ' + deleteFunction.getId + '?'} setOpen={deleteFunction.handleClick} onClick={deleteOne} />
+      <DeleteElement
+        open={deleteFunction.getOpen} message={'Voulez-vous vraiment supprimer ' + deleteFunction.getId + '?'} setOpen={deleteFunction.handleClick} onClick={deleteOne} />
       {updateFunction.getOpen && <UpdateElement open={updateFunction.getOpen} setOpen={updateFunction.handleClick} submit={updateOne} field={nameFields} initForm={updateFunction.getBody} />}
     </>
   )
 }
 
-export default ListAccount
+export default ListTypeCharge

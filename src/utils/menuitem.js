@@ -1,12 +1,18 @@
-import {AccountBalance, AccountBalanceWallet, Chat, Computer, HomeRounded, List, ListAltRounded, SupportAgent,  } from "@mui/icons-material";
+import {AccountBalance, AccountBalanceWallet, Chat, Computer, HomeRounded, List, ListAltRounded, MonetizationOn, Payments, PriceChange, Savings, SupportAgent,  } from "@mui/icons-material";
 import PeopleIcon from '@mui/icons-material/People'
 export const admin_pages = [
     { name: 'Accueil', link: '/home', icon: <HomeRounded /> },
     { name: 'Utilisateurs', link: '/users', icon: <PeopleIcon /> },
     {
-        name: 'Comptes', icon: <Computer />, dropDown: [
+        name: 'Comptes', icon: <Savings />, dropDown: [
             { name: 'Types de compte', link: '/home/account_type', icon: <AccountBalanceWallet /> },
             { name: 'Mes comptes', link: '/home/account', icon: <AccountBalance /> },
+        ]
+    },
+    {
+        name: 'Charges', icon: <MonetizationOn />, dropDown: [
+            { name: 'Types de charge', link: '/home/charge_type', icon: <PriceChange /> },
+            { name: 'Mes charges', link: '/home/charge', icon: <Payments /> },
         ]
     },
     { name: 'Very', link: '/index', icon: <Chat /> },
