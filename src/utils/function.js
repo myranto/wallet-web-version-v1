@@ -20,8 +20,17 @@ export const Personrole = {
     3: "Salarié"
 }
 
+export const roleItems = [
+    { name: 'Administrateur', value: 'A' },
+    { name: 'Client', value: 'C' },
+]
+
+export const getRole = (value) => {
+    return roleItems.map((row) => row.value === value ? row.name : null )
+}
+
 export function getDatePart(date) {
-    return  date.split('T')[0];
+    return date.split('T')[0];
 }
 export function formatDateForInput(isoString) {
     const date = new Date(isoString);
@@ -31,4 +40,4 @@ export function formatDateForInput(isoString) {
     const hours = String(date.getHours()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
     return `${year}-${month}-${day}T${hours}:${minutes}`;
-  }
+}

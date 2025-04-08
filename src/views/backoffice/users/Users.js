@@ -6,6 +6,7 @@ import MButton from '../../../components/forms/MButton'
 import Notification from '../../../components/notification/Notification'
 import useNotification from '../../../components/notification/useNotification'
 import useForm from '../../../components/forms/useForm'
+import { roleItems } from '../../../utils/function'
 
 /*
 Utilisation de form généralisé simple
@@ -22,10 +23,6 @@ const Users = () => {
     }
     const forms = useForm(initForm)
 
-    const roleItems = [
-        { name: 'Administrateur', value: 'A' },
-        { name: 'Client', value: 'C' },
-    ]
     /*
         générer la liste des champs, pour l'instant on encore que 
         les forms de type simple(number, text, password, email)

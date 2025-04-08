@@ -18,7 +18,7 @@ const ListAccountType = ({ handleResponse, refresh, setRefresh }) => {
   const [loading, setLoading] = useState(false)
   const [type, setType] = useState(null)
   const [page, setPage] = useState(0)
-  const [totalPage, setTotalPage] = useState(1)
+  const [totalPage, setTotalPage] = useState(0)
   const acctype = new AccTypeOP()
   const deleteFunction = useDelete()
   const updateFunction = useUpdate()

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Pagination, Stack } from "@mui/material";
 import Mtable from "../../../components/List/Mtable";
 import { CustomerOp } from "../../../classes/metier/CustomerOp";
+import { getRole } from "../../../utils/function";
 
 // utilisation de la table généralisé
 
@@ -18,7 +19,7 @@ const column = [
   { name: "Nom", selector: (row) => row.name },
   { name: "E-mail", selector: (row) => row.mail },
   { name: "Téléphone", selector: (row) => row.phone },
-  { name: "Role", selector: (row) => row.role },
+  { name: "Role", selector: (row) => getRole(row.role) },
 ];
 
 /**
