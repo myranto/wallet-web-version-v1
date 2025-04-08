@@ -10,6 +10,7 @@ const Users = React.lazy(() => import('../../views/backoffice/users/Users'))
 const AccountType = React.lazy(() => import('../../views/backoffice/account_type/AccountType'))
 const Account = React.lazy(() => import('../../views/backoffice/account/Account'))
 const TypeCharge = React.lazy(() => import('../../views/backoffice/charge_type/TypeCharge'))
+const TypeOperation = React.lazy(() => import('../../views/backoffice/operation_type/TypeOperation'))
 const Loading = () => {
   return (
     <Backdrop
@@ -35,6 +36,7 @@ const Roads = () => {
           <Route path={"/home/account_type"} element={<PrivateRoute role={1} Component={AccountType} componentName={"Account type"} />} />
           <Route path={"/home/account"} element={<PrivateRoute role={1} Component={Account} componentName={"Account"} />} />
           <Route path={"/home/charge_type"} element={<PrivateRoute role={1} Component={TypeCharge} componentName={"TypeCharge"} />} />
+          <Route path={"/home/type_operation"} element={<PrivateRoute role={1} Component={TypeOperation} componentName={"TypeOperation"} />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

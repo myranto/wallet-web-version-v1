@@ -1,4 +1,4 @@
-import {AccountBalance, AccountBalanceWallet, Chat, Computer, HomeRounded, List, ListAltRounded, MonetizationOn, Payments, PriceChange, Savings, SupportAgent,  } from "@mui/icons-material";
+import {AccountBalance, AccountBalanceWallet, Chat, Computer, HomeRounded, List, ListAltRounded, MonetizationOn, Moving, Payments, PriceChange, Savings, SupportAgent,  } from "@mui/icons-material";
 import PeopleIcon from '@mui/icons-material/People'
 export const admin_pages = [
     { name: 'Accueil', link: '/home', icon: <HomeRounded /> },
@@ -15,7 +15,7 @@ export const admin_pages = [
             { name: 'Mes charges', link: '/home/charge', icon: <Payments /> },
         ]
     },
-    { name: 'Very', link: '/index', icon: <Chat /> },
+    { name: 'Type Opérations', link: '/home/type_operation', icon: <Moving /> },
     { name: 'Demandes', link: '/home/request', icon: <ListAltRounded /> },
     {
         name: 'Ordinateur', icon: <Computer />, dropDown: [
