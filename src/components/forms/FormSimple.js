@@ -1,5 +1,6 @@
 import { Box, FormControl, FormLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import React from 'react'
+import { formatDateForInput } from '../../utils/function'
 
 const FormSimple = ({ fields, handleInput, form, variant, width = '50%' }) => {
     return (
@@ -14,7 +15,7 @@ const FormSimple = ({ fields, handleInput, form, variant, width = '50%' }) => {
                             <FormLabel htmlFor={row.name}>{row.libelle}</FormLabel>
                             <TextField
                                 name={row.name}
-                                value={form[row.name]}
+                                value={row.type === 'datetime-local' ? formatDateForInput(form[row.name]) : form[row.name]}
                                 onChange={handleInput}
                                 placeholder={'Entrez ' + row.libelle}
                                 type={row.type}

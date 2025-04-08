@@ -9,7 +9,6 @@ const useDelete = () => {
     const drop = (ids) => {
         handleClick()
         setId(ids)
-        console.log(ids);
         
     }
     const getOpen = open

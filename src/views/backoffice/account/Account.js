@@ -23,7 +23,7 @@ const Account = () => {
     const forms = useForm(initForm)
     const namefield = [
         { name: 'current_amount', libelle: 'Solde :', type: 'number', normal: true },
-        { name: 'date_amount', libelle: 'Date solde :', type: 'date', normal: true },
+        { name: 'date_amount', libelle: 'Date solde :', type: 'datetime-local', normal: true },
         { name: 'type_id', libelle: 'Type de compte :', type: 'select', normal: false, items: typesItems },
     ];
     const submit = (e) => {

@@ -15,8 +15,8 @@ export class CrudCommon extends Api{
     deleteOne(id){
         return this.deleteCall(this.uri + '/' + id, true)
     }
-    updateOne(body, id){
-        return this.putCall(this.uri+'/'+id, body, true)
+    updateOne(body){
+        return this.putCall(this.uri, body, true)
     }
     findAll(page = null){
         const url = page!==null ? this.uri+'/all/'+page+'/15' : this.uri

@@ -24,11 +24,9 @@ const Mtbody = ({ data, column, update, drop }) => {
                                         size="large"
                                         aria-haspopup="true"
                                         color="primary"
-                                    // onClick={() => {
-                                    //     handleOpen()
-                                    //     setBody(row)
-                                    //     setUpdate(true)
-                                    // }}
+                                    onClick={() => {
+                                        update(row)
+                                    }}
                                     >
                                         <Edit />
                                     </IconButton>

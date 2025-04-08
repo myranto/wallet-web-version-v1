@@ -4,6 +4,8 @@ import { Pagination, Stack } from '@mui/material';
 import Mtable from '../../../components/List/Mtable';
 import useDelete from '../../../components/delete/useDelete';
 import DeleteElement from '../../../components/delete/DeleteElement';
+import UpdateElement from '../../../components/update/UpdateElement';
+import useUpdate from '../../../components/update/useUpdate';
 
 const column = [
   { name: "Identifiant", selector: (row) => row.id },
@@ -19,6 +21,12 @@ const ListAccountType = ({ handleResponse, refresh, setRefresh }) => {
   const [totalPage, setTotalPage] = useState(1)
   const acctype = new AccTypeOP()
   const deleteFunction = useDelete()
+  const updateFunction = useUpdate()
+  const namefield = [
+    { name: 'type', libelle: 'Type de compte :', type: 'text', normal: true },
+    { name: 'code', libelle: 'Accronyme :', type: 'text', normal: true },
+    { name: 'creation_date', libelle: 'Date création :', type: 'datetime-local', normal: true },
+  ];
 
   useEffect(() => {
     setLoading(true)
@@ -47,6 +55,20 @@ const ListAccountType = ({ handleResponse, refresh, setRefresh }) => {
         console.log(error)
       });
   }
+  const updateOne = (updateForm) => {
+    console.log(updateForm.getForm);
+    acctype.updateOne(updateForm.getForm)
+      .then((data) => {
+        handleResponse(true, data?.data)
+        updateFunction.handleClick()
+        setRefresh(prev => prev + 1)
+      })
+      .catch((error) => {
+        handleResponse(false, error.message)
+        console.log(error)
+      });
+
+  }
   return (
     <>
       <Mtable
@@ -54,7 +76,7 @@ const ListAccountType = ({ handleResponse, refresh, setRefresh }) => {
         column={column}
         data={type}
         drop={deleteFunction.drop}
-        update={true}
+        update={updateFunction.openUpdate}
         loading={loading}
       />
       <Stack spacing={2} alignItems={"center"}>
@@ -66,6 +88,7 @@ const ListAccountType = ({ handleResponse, refresh, setRefresh }) => {
         />
       </Stack>
       <DeleteElement open={deleteFunction.getOpen} message={'Voulez-vous vraiment supprimer ' + deleteFunction.getId + '?'} setOpen={deleteFunction.handleClick} onClick={deleteOne} />
+      {updateFunction.getOpen && <UpdateElement open={updateFunction.getOpen} setOpen={updateFunction.handleClick} submit={updateOne} field={namefield} initForm={updateFunction.getBody} />}
     </>
   )
 }
