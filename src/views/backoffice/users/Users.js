@@ -7,6 +7,7 @@ import Notification from '../../../components/notification/Notification'
 import useNotification from '../../../components/notification/useNotification'
 import useForm from '../../../components/forms/useForm'
 import { roleItems } from '../../../utils/function'
+import { CustomerOp } from '../../../classes/metier/CustomerOp'
 
 /*
 Utilisation de form généralisé simple
@@ -15,6 +16,9 @@ tout d'abord initialiser la form, c'est à dire l'objet
 const Users = () => {
     const handleOperation = useNotification()
     const [loading, setLoading] = useState(false)
+    const [refresh, setRefresh] = useState(0)
+      const userOp = new CustomerOp();
+    
     const initForm = {
         name: '',
         mail: '',
@@ -38,8 +42,19 @@ const Users = () => {
     // générer la function qui valide l'opération
     const submit = (e) => {
         e.preventDefault()
-        console.log(forms.getForm)
         setLoading(true)
+        userOp.create(forms.getForm)
+            .then((data) => {
+                setLoading(false)
+                handleOperation.handleResponse(true, 'Création réussi!')
+                forms.resetForm()
+                setRefresh(prev => prev + 1)
+            })
+            .catch((error) => {
+                setLoading(false)
+                console.log(error);
+                handleOperation.handleResponse(false, error.message)
+            })
         setTimeout(() => {
             setLoading(false)
         }, 300)
@@ -57,7 +72,7 @@ const Users = () => {
                     <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
                 </Box>
                 <hr></hr>
-                <ListUser handleResponse={handleOperation.handleResponse} />
+                <ListUser nameFields={namefield} handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} />
                 {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
 
             </CardContent>

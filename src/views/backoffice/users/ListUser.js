@@ -3,6 +3,10 @@ import { Pagination, Stack } from "@mui/material";
 import Mtable from "../../../components/List/Mtable";
 import { CustomerOp } from "../../../classes/metier/CustomerOp";
 import { getRole } from "../../../utils/function";
+import useUpdate from '../../../components/update/useUpdate';
+import useDelete from '../../../components/delete/useDelete';
+import DeleteElement from '../../../components/delete/DeleteElement';
+import UpdateElement from '../../../components/update/UpdateElement';
 
 // utilisation de la table généralisé
 
@@ -29,12 +33,14 @@ const column = [
  * A noter que la liste sera en amélioration continue
  */
 const headColor = "white";
-export default function ListUser({handleResponse}) {
+export default function ListUser({handleResponse, refresh, setRefresh, nameFields}) {
   const [loading, setLoading] = useState(false)
   const [users, setusers] = useState(null);
   const [page, setPage] = useState(0)
   const [totalPage, setTotalPage] = useState(1)
   const userOp = new CustomerOp();
+  const deleteFunction = useDelete()
+  const updateFunction = useUpdate()
 
   useEffect(() => {
     setLoading(true)
@@ -52,7 +58,34 @@ export default function ListUser({handleResponse}) {
         console.log(error)
 
       });
-  }, [page]);
+  }, [page, refresh]);
+
+  const deleteOne = () => {
+    userOp.deleteOne(deleteFunction.getId)
+      .then((data) => {
+        handleResponse(true, data?.data)
+        deleteFunction.handleClick()
+        setRefresh(prev => prev + 1)
+      })
+      .catch((error) => {
+        handleResponse(false, error.message)
+        console.log(error)
+      });
+  }
+  const updateOne = (updateForm) => {
+    console.log(updateForm.getForm);
+    userOp.updateOne(updateForm.getForm)
+      .then((data) => {
+        handleResponse(true, data?.data)
+        updateFunction.handleClick()
+        setRefresh(prev => prev + 1)
+      })
+      .catch((error) => {
+        handleResponse(false, error.message)
+        console.log(error)
+      });
+
+  }
 
   return (
     <>
@@ -60,8 +93,8 @@ export default function ListUser({handleResponse}) {
         color={headColor}
         column={column}
         data={users}
-        drop={true}
-        update={true}
+        drop={deleteFunction.drop}
+        update={updateFunction.openUpdate}
         loading={loading}
       />
       <Stack spacing={2} alignItems={"center"}>
@@ -72,6 +105,8 @@ export default function ListUser({handleResponse}) {
           color={'primary'}
         />
       </Stack>
+      <DeleteElement open={deleteFunction.getOpen} message={'Voulez-vous vraiment supprimer ' + deleteFunction.getId + '?'} setOpen={deleteFunction.handleClick} onClick={deleteOne} />
+      {updateFunction.getOpen && <UpdateElement open={updateFunction.getOpen} setOpen={updateFunction.handleClick} submit={updateOne} field={nameFields} initForm={updateFunction.getBody} />}
     </>
   );
 }

@@ -24,7 +24,6 @@ const AccountType = () => {
   const typeOP = new AccTypeOP()
   const submit = (e) => {
     e.preventDefault()
-    console.log(forms.getForm)
     setLoading(true)
     typeOP.create(forms.getForm)
       .then((data) => {
