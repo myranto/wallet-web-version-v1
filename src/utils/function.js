@@ -25,8 +25,26 @@ export const roleItems = [
     { name: 'Client', value: 'C' },
 ]
 
-export const getRole = (value) => {
-    return roleItems.map((row) => row.value === value ? row.name : null )
+export const typesItems = [
+    { name: 'Courant', value: 'C' },
+    { name: 'Epargne', value: 'E' },
+]
+
+export const getNameField = (value, data=roleItems) => {
+    return data?.map((row) => row.value === value ? row.name : null )
+}
+
+export function convertDtoToItems(dto = null){
+    const result = []
+    if (!dto)
+        return typesItems
+
+    dto?.map((row) => 
+        result.push({
+            name: row?.type, value: row?.id
+        })
+    )
+    return result
 }
 
 export function getDatePart(date) {

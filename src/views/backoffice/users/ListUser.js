@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Pagination, Stack } from "@mui/material";
 import Mtable from "../../../components/List/Mtable";
 import { CustomerOp } from "../../../classes/metier/CustomerOp";
-import { getRole } from "../../../utils/function";
+import { getNameField } from "../../../utils/function";
 import useUpdate from '../../../components/update/useUpdate';
 import useDelete from '../../../components/delete/useDelete';
 import DeleteElement from '../../../components/delete/DeleteElement';
@@ -23,7 +23,7 @@ const column = [
   { name: "Nom", selector: (row) => row.name },
   { name: "E-mail", selector: (row) => row.mail },
   { name: "Téléphone", selector: (row) => row.phone },
-  { name: "Role", selector: (row) => getRole(row.role) },
+  { name: "Role", selector: (row) => getNameField(row.role) },
 ];
 
 /**
@@ -73,7 +73,6 @@ export default function ListUser({handleResponse, refresh, setRefresh, nameField
       });
   }
   const updateOne = (updateForm) => {
-    console.log(updateForm.getForm);
     userOp.updateOne(updateForm.getForm)
       .then((data) => {
         handleResponse(true, data?.data)
