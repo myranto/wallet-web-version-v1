@@ -14,6 +14,7 @@ Ensuite générer la liste des columns
 dans la partie selector, indiqué comment accéder au donnée que l'on veut afficher
 */
 const column = [
+  { name: "Identifiant", selector: (row) => row.id },
   { name: "Nom", selector: (row) => row.name },
   { name: "E-mail", selector: (row) => row.mail },
   { name: "Téléphone", selector: (row) => row.phone },

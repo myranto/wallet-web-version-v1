@@ -1,5 +1,5 @@
 import { Delete, Edit } from '@mui/icons-material'
-import { IconButton, TableCell, TableRow } from '@mui/material'
+import { IconButton } from '@mui/material'
 import React from 'react'
 import { StyledTableRow, StyledTableCell } from '../../utils/styled';
 
@@ -38,11 +38,9 @@ const Mtbody = ({ data, column, update, drop }) => {
                                         size="large"
                                         aria-haspopup="true"
                                         color="error"
-                                    // onClick={() => {
-                                    //     handleOpen()
-                                    //     setBody(row)
-                                    //     setUpdate(true)
-                                    // }}
+                                    onClick={() => {
+                                        drop(row?.id)
+                                    }}
                                     >
                                         <Delete />
                                     </IconButton>

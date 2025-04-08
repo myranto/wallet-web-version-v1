@@ -30,6 +30,7 @@ const AccountType = () => {
       .then((data) => {
         setLoading(false)
         handleOperation.handleResponse(true, 'Création réussi!')
+        forms.resetForm()
         setRefresh(prev => prev + 1)
       })
       .catch((error) => {
@@ -51,7 +52,7 @@ const AccountType = () => {
         <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
       </Box>
       <hr></hr>
-      <ListAccountType refresh={refresh} handleResponse={handleOperation.handleResponse} />
+      <ListAccountType setRefresh={setRefresh} refresh={refresh} handleResponse={handleOperation.handleResponse} />
       {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
     </>
   )
