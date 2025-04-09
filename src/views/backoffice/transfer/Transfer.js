@@ -41,7 +41,7 @@ const Transfer = () => {
     }, [])
     const forms = useForm(initForm)
     const namefield = [
-        { name: 'amount', libelle: 'Montant :', type: 'number', normal: true },
+        { name: 'amount', libelle: 'Montant :', type: 'number', normal: true, validator:{ checking:(value)=>  value < 0, error:'Montant doit etre supérieur à 0' } },
         { name: 'debit_account', libelle: 'Compte de débit:', type: 'select', normal: false, items: type },
         { name: 'credit_account', libelle: 'Compte de credit:', type: 'select', normal: false, items: type },
         { name: 'start_date', libelle: 'Date début :', type: 'datetime-local', normal: true },
@@ -49,7 +49,6 @@ const Transfer = () => {
     ];
     const submit = (e) => {
         e.preventDefault()
-        console.log(forms.getForm)
         setLoading(true)
         transferOP.create(forms.getForm)
             .then((data) => {

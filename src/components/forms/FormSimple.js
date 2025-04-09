@@ -23,6 +23,7 @@ const FormSimple = ({ fields, handleInput, form, variant, width = '50%' }) => {
                                 autoComplete={row.libelle}
                                 required
                                 fullWidth
+                                error={false}
                                 variant={variant}
                                 color="primary"
                             />
