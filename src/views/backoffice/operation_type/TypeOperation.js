@@ -40,9 +40,6 @@ const TypeOperation = () => {
         console.log(error);
         handleOperation.handleResponse(false, error.message)
       })
-    setTimeout(() => {
-      setLoading(false)
-    }, 300)
   }
   return (
     <>
