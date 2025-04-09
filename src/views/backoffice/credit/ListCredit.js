@@ -27,7 +27,7 @@ const ListCredit = ({ handleResponse, refresh, setRefresh, nameFields }) => {
     useEffect(() => {
         setLoading(true)
         creditOP
-            .findAll(page)
+            .findAll('creationdate', 'asc',page)
             .then((data) => {
                 setLoading(false)
                 setCredit(data?.data?.content);

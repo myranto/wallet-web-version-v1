@@ -19,8 +19,8 @@ const Account = () => {
     const accountOP = new AccountOP()
     const acctype = new AccTypeOP()
     const initForm = {
-        current_amount: '',
-        date_amount: '',
+        currentamount: '',
+        dateamount: '',
         customer_id: 'CUS00004',
         type_id: ''
     }
@@ -38,9 +38,9 @@ const Account = () => {
     }, [])
     const forms = useForm(initForm)
     const namefield = [
-        { name: 'current_amount', libelle: 'Solde :', type: 'number', normal: true },
+        { name: 'currentamount', libelle: 'Solde :', type: 'number', normal: true },
         { name: 'type_id', libelle: 'Type de compte :', type: 'select', normal: false, items: type },
-        { name: 'date_amount', libelle: 'Date solde :', type: 'datetime-local', normal: true },
+        { name: 'dateamount', libelle: 'Date solde :', type: 'datetime-local', normal: true },
     ];
     const submit = (e) => {
         e.preventDefault()

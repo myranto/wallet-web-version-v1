@@ -21,13 +21,13 @@ const ListAccount = ({ handleResponse, refresh, setRefresh, nameFields }) => {
 
   const column = [
     { name: "Type de compte", selector: (row) => row?.type?.type },
-    { name: "Solde actuel", selector: (row) => row.current_amount },
-    { name: "Date de solde", selector: (row) => new Date(row.date_amount).toLocaleDateString() }
+    { name: "Solde actuel", selector: (row) => row.currentamount },
+    { name: "Date de solde", selector: (row) => new Date(row.dateamount).toLocaleDateString() }
   ];
   useEffect(() => {
     setLoading(true)
     accountOP
-      .findAll(page)
+      .findAll('dateamount', 'desc',page)
       .then((data) => {
         setLoading(false)
         setAccount(data?.data?.content);

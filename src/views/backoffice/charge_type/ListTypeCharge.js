@@ -11,7 +11,7 @@ const column = [
   { name: "Identifiant", selector: (row) => row.id },
   { name: "Type de charge", selector: (row) => row.libelle },
   { name: "Accronyme", selector: (row) => row.code },
-  { name: "Date de création", selector: (row) => new Date(row.creation_date).toLocaleDateString() },
+  { name: "Date de création", selector: (row) => new Date(row.creationdate).toLocaleDateString() },
 ];
 
 const headColor = "white";
@@ -26,7 +26,7 @@ const ListTypeCharge = ({ handleResponse, refresh, setRefresh, nameFields }) => 
   useEffect(() => {
     setLoading(true)
     typeChargeOp
-      .findAll(page)
+      .findAll('creationdate', 'asc',page)
       .then((data) => {
         setLoading(false)
         console.log(data?.data?.content?.length);

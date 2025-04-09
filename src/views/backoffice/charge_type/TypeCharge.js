@@ -16,12 +16,12 @@ const TypeCharge = () => {
   const initForm = {
     libelle: '',
     code: '',
-    creation_date: ''
+    creationdate: ''
   }
   const namefield = [
     { name: 'libelle', libelle: 'Type de charge :', type: 'text', normal: true },
     { name: 'code', libelle: 'Accronyme :', type: 'text', normal: true },
-    { name: 'creation_date', libelle: 'Date création :', type: 'datetime-local', normal: true },
+    { name: 'creationdate', libelle: 'Date création :', type: 'datetime-local', normal: true },
   ];
   const forms = useForm(initForm)
 

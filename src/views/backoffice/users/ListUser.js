@@ -45,7 +45,7 @@ export default function ListUser({handleResponse, refresh, setRefresh, nameField
   useEffect(() => {
     setLoading(true)
     userOp
-      .findAll(page)
+      .findAll('creationdate', 'asc',page)
       .then((data) => {
         setLoading(false)
         setusers(data?.data?.content);

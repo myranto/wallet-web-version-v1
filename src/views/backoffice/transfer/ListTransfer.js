@@ -29,7 +29,7 @@ const ListTransfer = ({ handleResponse, refresh, setRefresh, nameFields }) => {
     useEffect(() => {
         setLoading(true)
         transferOP
-            .findAll(page)
+            .findAll('creationdate', 'asc',page)
             .then((data) => {
                 setLoading(false)
                 setTransfer(data?.data?.content);

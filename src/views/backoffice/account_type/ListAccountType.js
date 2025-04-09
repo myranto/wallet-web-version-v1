@@ -11,7 +11,7 @@ const column = [
   { name: "Identifiant", selector: (row) => row.id },
   { name: "Type de compte", selector: (row) => row.type },
   { name: "Accronyme", selector: (row) => row.code },
-  { name: "Date de création", selector: (row) => new Date(row.creation_date).toLocaleDateString() },
+  { name: "Date de création", selector: (row) => new Date(row.creationdate).toLocaleDateString() },
 ];
 const headColor = "white";
 const ListAccountType = ({ handleResponse, refresh, setRefresh }) => {
@@ -25,13 +25,13 @@ const ListAccountType = ({ handleResponse, refresh, setRefresh }) => {
   const namefield = [
     { name: 'type', libelle: 'Type de compte :', type: 'text', normal: true },
     { name: 'code', libelle: 'Accronyme :', type: 'text', normal: true },
-    { name: 'creation_date', libelle: 'Date création :', type: 'datetime-local', normal: true },
+    { name: 'creationdate', libelle: 'Date création :', type: 'datetime-local', normal: true },
   ];
 
   useEffect(() => {
     setLoading(true)
     acctype
-      .findAll(page)
+      .findAll('creationdate', 'asc',page)
       .then((data) => {
         setLoading(false)
         setType(data?.data?.content);
