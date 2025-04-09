@@ -103,7 +103,7 @@ return (
           <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
       </Box>
       <hr></hr>
-      <ListCharge handleResponse={handleOperation.handleResponse} account_types={account} charge_type={tcharge} operations_type={operation} refresh={refresh} setRefresh={setRefresh} nameFields={namefield}  />
+      <ListCharge handleResponse={handleOperation.handleResponse}  refresh={refresh} setRefresh={setRefresh} nameFields={namefield}  />
       {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
   </>
 )

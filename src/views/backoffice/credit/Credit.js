@@ -85,7 +85,7 @@ const Credit = () => {
                 <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
             </Box>
             <hr></hr>
-            <ListCredit handleResponse={handleOperation.handleResponse} account_types={account} operations_type={operation} refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
+            <ListCredit handleResponse={handleOperation.handleResponse}  refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
             {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
         </>
     )

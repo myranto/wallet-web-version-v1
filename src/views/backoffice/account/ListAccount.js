@@ -6,12 +6,11 @@ import useUpdate from '../../../components/update/useUpdate';
 import useDelete from '../../../components/delete/useDelete';
 import DeleteElement from '../../../components/delete/DeleteElement';
 import UpdateElement from '../../../components/update/UpdateElement';
-import { getNameField } from '../../../utils/function';
 
 
 const headColor = "white";
 
-const ListAccount = ({ handleResponse, refresh, setRefresh, nameFields, account_types }) => {
+const ListAccount = ({ handleResponse, refresh, setRefresh, nameFields }) => {
   const [loading, setLoading] = useState(false)
   const [account, setAccount] = useState(null)
   const [page, setPage] = useState(0)
@@ -21,7 +20,7 @@ const ListAccount = ({ handleResponse, refresh, setRefresh, nameFields, account_
   const updateFunction = useUpdate()
 
   const column = [
-    { name: "Type de compte", selector: (row) => getNameField(row.type_id, account_types) },
+    { name: "Type de compte", selector: (row) => row?.type?.type },
     { name: "Solde actuel", selector: (row) => row.current_amount },
     { name: "Date de solde", selector: (row) => new Date(row.date_amount).toLocaleDateString() }
   ];

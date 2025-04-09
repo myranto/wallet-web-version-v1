@@ -4,12 +4,11 @@ import DeleteElement from '../../../components/delete/DeleteElement';
 import UpdateElement from '../../../components/update/UpdateElement';
 import useUpdate from '../../../components/update/useUpdate';
 import useDelete from '../../../components/delete/useDelete';
-import { getNameField } from '../../../utils/function';
 import Mtable from '../../../components/List/Mtable';
 import { Pagination, Stack } from '@mui/material';
 const headColor = "white";
 
-const ListCredit = ({ handleResponse, refresh, setRefresh, nameFields, account_types, operations_type }) => {
+const ListCredit = ({ handleResponse, refresh, setRefresh, nameFields }) => {
     const [loading, setLoading] = useState(false)
     const [credit, setCredit] = useState(null)
     const [page, setPage] = useState(0)
@@ -19,8 +18,8 @@ const ListCredit = ({ handleResponse, refresh, setRefresh, nameFields, account_t
     const updateFunction = useUpdate()
     const column = [
         { name: "Identifiant", selector: (row) => row.id },
-        { name: "Type de compte", selector: (row) => getNameField(row.account_id, account_types) },
-        { name: "Type d' opération", selector: (row) => getNameField(row.operation_id, operations_type) },
+        { name: "Type de compte", selector: (row) => row?.account?.type},
+        { name: "Type d' opération", selector: (row) => row?.toperation?.libelle },
         { name: "Montant", selector: (row) => row.amount },
         { name: "Date début", selector: (row) => new Date(row.start_date).toLocaleDateString() },
         { name: "Date fin", selector: (row) => new Date(row.end_date).toLocaleDateString() }

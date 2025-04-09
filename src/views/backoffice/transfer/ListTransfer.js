@@ -4,12 +4,11 @@ import useUpdate from '../../../components/update/useUpdate';
 import useDelete from '../../../components/delete/useDelete';
 import DeleteElement from '../../../components/delete/DeleteElement';
 import UpdateElement from '../../../components/update/UpdateElement';
-import { getNameField } from '../../../utils/function';
 import { Pagination, Stack } from '@mui/material';
 import Mtable from '../../../components/List/Mtable';
 
 const headColor = "white";
-const ListTransfer = ({ handleResponse, refresh, setRefresh, nameFields, account_types }) => {
+const ListTransfer = ({ handleResponse, refresh, setRefresh, nameFields }) => {
     const [loading, setLoading] = useState(false)
     const [transfer, setTransfer] = useState(null)
     const [page, setPage] = useState(0)
@@ -21,8 +20,8 @@ const ListTransfer = ({ handleResponse, refresh, setRefresh, nameFields, account
 
     const column = [
         { name: "Identifiant", selector: (row) => row.id },
-        { name: "Compte debit", selector: (row) => getNameField(row.debit_account, account_types) },
-        { name: "Compte credit", selector: (row) => getNameField(row.credit_account, account_types) },
+        { name: "Compte debit", selector: (row) => row?.debit?.type },
+        { name: "Compte credit", selector: (row) => row?.credit?.type },
         { name: "Montant", selector: (row) => row.amount },
         { name: "Date début", selector: (row) => new Date(row.start_date).toLocaleDateString() },
         { name: "Date fin", selector: (row) => new Date(row.end_date).toLocaleDateString() }
