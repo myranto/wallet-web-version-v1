@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { AccountOP } from '../../../classes/metier/AccountOP';
 import Mtable from '../../../components/List/Mtable';
 import { Pagination, Stack } from '@mui/material';
 import useUpdate from '../../../components/update/useUpdate';
@@ -10,12 +9,11 @@ import UpdateElement from '../../../components/update/UpdateElement';
 
 const headColor = "white";
 
-const ListAccount = ({ handleResponse, refresh, setRefresh, nameFields }) => {
+const ListAccount = ({ handleResponse, refresh, setRefresh, nameFields,accountOP }) => {
   const [loading, setLoading] = useState(false)
   const [account, setAccount] = useState(null)
   const [page, setPage] = useState(0)
   const [totalPage, setTotalPage] = useState(1)
-  const accountOP = new AccountOP()
   const deleteFunction = useDelete()
   const updateFunction = useUpdate()
 

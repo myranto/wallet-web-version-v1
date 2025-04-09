@@ -74,7 +74,7 @@ const Transfer = () => {
                 <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
             </Box>
             <hr></hr>
-            <ListTransfer handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
+            <ListTransfer transferOP={transferOP} handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
             {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
         </>
     )

@@ -52,7 +52,7 @@ const TypeCharge = () => {
         <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
       </Box>
       <hr></hr>
-      <ListTypeCharge handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
+      <ListTypeCharge typeChargeOp={typeChargeOp} handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
       {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
     </>
   )

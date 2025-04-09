@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { CreditOP } from '../../../classes/metier/CreditOP'
 import DeleteElement from '../../../components/delete/DeleteElement';
 import UpdateElement from '../../../components/update/UpdateElement';
 import useUpdate from '../../../components/update/useUpdate';
@@ -8,12 +7,11 @@ import Mtable from '../../../components/List/Mtable';
 import { Pagination, Stack } from '@mui/material';
 const headColor = "white";
 
-const ListCredit = ({ handleResponse, refresh, setRefresh, nameFields }) => {
+const ListCredit = ({ handleResponse, refresh, setRefresh, nameFields,creditOP }) => {
     const [loading, setLoading] = useState(false)
     const [credit, setCredit] = useState(null)
     const [page, setPage] = useState(0)
     const [totalPage, setTotalPage] = useState(1)
-    const creditOP = new CreditOP()
     const deleteFunction = useDelete()
     const updateFunction = useUpdate()
     const column = [

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { AccTypeOP } from '../../../classes/metier/AccTypeOP';
 import { Pagination, Stack } from '@mui/material';
 import Mtable from '../../../components/List/Mtable';
 import useDelete from '../../../components/delete/useDelete';
@@ -14,12 +13,11 @@ const column = [
   { name: "Date de création", selector: (row) => new Date(row.creationdate).toLocaleDateString() },
 ];
 const headColor = "white";
-const ListAccountType = ({ handleResponse, refresh, setRefresh }) => {
+const ListAccountType = ({ handleResponse, refresh, setRefresh,acctype }) => {
   const [loading, setLoading] = useState(false)
   const [type, setType] = useState(null)
   const [page, setPage] = useState(0)
   const [totalPage, setTotalPage] = useState(0)
-  const acctype = new AccTypeOP()
   const deleteFunction = useDelete()
   const updateFunction = useUpdate()
   const namefield = [

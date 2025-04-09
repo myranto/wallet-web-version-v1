@@ -33,12 +33,11 @@ const column = [
  * A noter que la liste sera en amélioration continue
  */
 const headColor = "white";
-export default function ListUser({handleResponse, refresh, setRefresh, nameFields}) {
+export default function ListUser({handleResponse, refresh, setRefresh, nameFields, userOp}) {
   const [loading, setLoading] = useState(false)
   const [users, setusers] = useState(null);
   const [page, setPage] = useState(0)
   const [totalPage, setTotalPage] = useState(1)
-  const userOp = new CustomerOp();
   const deleteFunction = useDelete()
   const updateFunction = useUpdate()
 

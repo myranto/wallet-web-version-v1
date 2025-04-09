@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { TypeChargeOP } from '../../../classes/metier/TypeChargeOP'
 import useUpdate from '../../../components/update/useUpdate';
 import useDelete from '../../../components/delete/useDelete';
 import DeleteElement from '../../../components/delete/DeleteElement';
@@ -15,12 +14,11 @@ const column = [
 ];
 
 const headColor = "white";
-const ListTypeCharge = ({ handleResponse, refresh, setRefresh, nameFields }) => {
+const ListTypeCharge = ({ handleResponse, refresh, setRefresh, nameFields, typeChargeOp }) => {
   const [loading, setLoading] = useState(false)
   const [type, setType] = useState(null)
   const [page, setPage] = useState(0)
   const [totalPage, setTotalPage] = useState(1)
-  const typeChargeOp = new TypeChargeOP()
   const deleteFunction = useDelete()
   const updateFunction = useUpdate()
   useEffect(() => {

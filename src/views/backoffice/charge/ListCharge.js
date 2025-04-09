@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { ChargeOP } from '../../../classes/metier/ChargeOP'
 import DeleteElement from '../../../components/delete/DeleteElement';
 import UpdateElement from '../../../components/update/UpdateElement';
 import useUpdate from '../../../components/update/useUpdate';
@@ -8,13 +7,12 @@ import Mtable from '../../../components/List/Mtable';
 import { Pagination, Stack } from '@mui/material';
 const headColor = "white";
 
-const ListCharge = ({ handleResponse, refresh, setRefresh, nameFields }) => {
+const ListCharge = ({ handleResponse, refresh, setRefresh, nameFields, chargeOP }) => {
   const [loading, setLoading] = useState(false)
   const [charge, setCharge] = useState(null)
   const [page, setPage] = useState(0)
   const [totalPage, setTotalPage] = useState(1)
 
-  const chargeOP = new ChargeOP()
   const deleteFunction = useDelete()
   const updateFunction = useUpdate()
 

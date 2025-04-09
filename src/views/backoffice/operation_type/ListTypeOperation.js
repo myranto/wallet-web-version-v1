@@ -15,12 +15,11 @@ const column = [
 ];
 const headColor = "white";
 
-const ListTypeOperation = ({ handleResponse, refresh, setRefresh, nameFields }) => {
+const ListTypeOperation = ({ handleResponse, refresh, setRefresh, nameFields,typeOpe }) => {
   const [loading, setLoading] = useState(false)
   const [type, setType] = useState(null)
   const [page, setPage] = useState(0)
   const [totalPage, setTotalPage] = useState(1)
-  const typeOpe = new TypeOperationOP()
   const deleteFunction = useDelete()
   const updateFunction = useUpdate()
   useEffect(() => {

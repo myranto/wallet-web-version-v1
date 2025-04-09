@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { TransferOP } from '../../../classes/metier/TransferOP'
 import useUpdate from '../../../components/update/useUpdate';
 import useDelete from '../../../components/delete/useDelete';
 import DeleteElement from '../../../components/delete/DeleteElement';
@@ -8,13 +7,12 @@ import { Pagination, Stack } from '@mui/material';
 import Mtable from '../../../components/List/Mtable';
 
 const headColor = "white";
-const ListTransfer = ({ handleResponse, refresh, setRefresh, nameFields }) => {
+const ListTransfer = ({ handleResponse, refresh, setRefresh, nameFields, transferOP }) => {
     const [loading, setLoading] = useState(false)
     const [transfer, setTransfer] = useState(null)
     const [page, setPage] = useState(0)
     const [totalPage, setTotalPage] = useState(1)
 
-    const transferOP = new TransferOP()
     const deleteFunction = useDelete()
     const updateFunction = useUpdate()
 

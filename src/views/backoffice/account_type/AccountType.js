@@ -48,7 +48,7 @@ const AccountType = () => {
         <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
       </Box>
       <hr></hr>
-      <ListAccountType setRefresh={setRefresh} refresh={refresh} handleResponse={handleOperation.handleResponse} />
+      <ListAccountType acctype={typeOP} setRefresh={setRefresh} refresh={refresh} handleResponse={handleOperation.handleResponse} />
       {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
     </>
   )

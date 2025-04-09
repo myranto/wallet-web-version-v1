@@ -69,7 +69,7 @@ const Account = () => {
                 <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
             </Box>
             <hr></hr>
-            <ListAccount handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
+            <ListAccount accountOP={accountOP} handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
             {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
         </>
     )

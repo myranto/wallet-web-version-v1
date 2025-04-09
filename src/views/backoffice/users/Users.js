@@ -69,7 +69,7 @@ const Users = () => {
                     <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
                 </Box>
                 <hr></hr>
-                <ListUser nameFields={namefield} handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} />
+                <ListUser userOp={userOp} nameFields={namefield} handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} />
                 {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
 
             </CardContent>
