@@ -6,11 +6,10 @@ import { TypeChargeOP } from '../../../classes/metier/TypeChargeOP'
 import { ChargeOP } from '../../../classes/metier/ChargeOP'
 import useForm from '../../../components/forms/useForm'
 import { convertDtoToItems } from '../../../utils/function'
-import { Box, Typography } from '@mui/material'
-import FormSimple from '../../../components/forms/FormSimple'
-import MButton from '../../../components/forms/MButton'
+import { Card, CardContent, Typography } from '@mui/material'
 import Notification from '../../../components/notification/Notification'
 import ListCharge from './ListCharge'
+import FormContainer from '../../../components/forms/FormContainer'
 
 const Charge = () => {
   const handleOperation = useNotification()
@@ -59,7 +58,7 @@ const Charge = () => {
     typeChargeOp
       .findAll()
       .then((data) => {
-        
+
         setTcharge(convertDtoToItems(data?.data));
       })
       .catch((error) => {
@@ -75,38 +74,43 @@ const Charge = () => {
     { name: 'operation_id', libelle: 'Type d\'opération:', type: 'select', normal: false, items: operation },
     { name: 'start_date', libelle: 'Date début :', type: 'datetime-local', normal: true },
     { name: 'end_date', libelle: 'Date fin :', type: 'datetime-local', normal: true },
-];
-const submit = (e) => {
-  e.preventDefault()
-  console.log(forms.getForm)
-  setLoading(true)
-  chargeOP.create(forms.getForm)
+  ];
+  const submit = (e) => {
+    e.preventDefault()
+    console.log(forms.getForm)
+    setLoading(true)
+    chargeOP.create(forms.getForm)
       .then((data) => {
-          setLoading(false)
-          handleOperation.handleResponse(true, 'Création réussi!')
-          forms.resetForm()
-          setRefresh(prev => prev + 1)
+        setLoading(false)
+        handleOperation.handleResponse(true, 'Création réussi!')
+        forms.resetForm()
+        setRefresh(prev => prev + 1)
       })
       .catch((error) => {
-          setLoading(false)
-          console.log(error);
-          handleOperation.handleResponse(false, error.message)
+        setLoading(false)
+        console.log(error);
+        handleOperation.handleResponse(false, error.message)
       })
-}
-return (
-  <>
-      <Typography variant='h3' padding={2}>Page charge</Typography>
-      <FormSimple variant={'outlined'} fields={namefield} submit={submit} form={forms.getForm} handleInput={forms.handleInputChange} libelle={'Valider'} />
-      <Box component={'form'} noValidate sx={{
-          display: 'flex', flexDirection: 'column', width: '100%', padding: 1, alignItems: 'center'
-      }}>
-          <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
-      </Box>
-      <hr></hr>
-      <ListCharge chargeOP={chargeOP} handleResponse={handleOperation.handleResponse}  refresh={refresh} setRefresh={setRefresh} nameFields={namefield}  />
-      {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
-  </>
-)
+  }
+  return (
+
+    <Card sx={{ maxWidth: '100vw' }}>
+      <CardContent sx={{ overflowY: 'hidden' }}>
+        <Typography variant='h3' padding={2}>Page charge</Typography>
+        <FormContainer btnLibelle={'Valider'}
+          form={forms.getForm}
+          handleInputChange={forms.handleInputChange}
+          loading={loading}
+          namefield={namefield}
+          submit={submit}
+          variant={'outlined'}
+        />
+        <hr></hr>
+        <ListCharge chargeOP={chargeOP} handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
+        {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
+      </CardContent>
+    </Card>
+  )
 }
 
 export default Charge

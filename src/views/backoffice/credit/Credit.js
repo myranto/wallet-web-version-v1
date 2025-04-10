@@ -5,11 +5,10 @@ import { convertDtoToItems } from '../../../utils/function'
 import { AccTypeOP } from '../../../classes/metier/AccTypeOP'
 import { CreditOP } from '../../../classes/metier/CreditOP'
 import useForm from '../../../components/forms/useForm'
-import { Box, Typography } from '@mui/material'
-import FormSimple from '../../../components/forms/FormSimple'
-import MButton from '../../../components/forms/MButton'
+import { Card, CardContent, Typography } from '@mui/material'
 import Notification from '../../../components/notification/Notification'
 import ListCredit from './ListCredit'
+import FormContainer from '../../../components/forms/FormContainer'
 
 const Credit = () => {
     const handleOperation = useNotification()
@@ -76,18 +75,24 @@ const Credit = () => {
             })
     }
     return (
-        <>
-            <Typography variant='h3' padding={2}>Page crédit</Typography>
-            <FormSimple variant={'outlined'} fields={namefield} submit={submit} form={forms.getForm} handleInput={forms.handleInputChange} libelle={'Valider'} />
-            <Box component={'form'} noValidate sx={{
-                display: 'flex', flexDirection: 'column', width: '100%', padding: 1, alignItems: 'center'
-            }}>
-                <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
-            </Box>
-            <hr></hr>
-            <ListCredit handleResponse={handleOperation.handleResponse}  refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
-            {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
-        </>
+
+        <Card sx={{ maxWidth: '100vw' }}>
+            <CardContent sx={{ overflowY: 'hidden' }}>
+                <Typography variant='h3' padding={2}>Page crédit</Typography>
+
+                <FormContainer btnLibelle={'Valider'}
+                    form={forms.getForm}
+                    handleInputChange={forms.handleInputChange}
+                    loading={loading}
+                    namefield={namefield}
+                    submit={submit}
+                    variant={'outlined'}
+                />
+                <hr></hr>
+                <ListCredit handleResponse={handleOperation.handleResponse} creditOP={creditOP} refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
+                {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
+            </CardContent>
+        </Card>
     )
 }
 

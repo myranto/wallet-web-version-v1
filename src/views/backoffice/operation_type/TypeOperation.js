@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import useNotification from '../../../components/notification/useNotification'
 import { TypeOperationOP } from '../../../classes/metier/TypeOperationOP'
 import useForm from '../../../components/forms/useForm'
-import { Box, Typography } from '@mui/material'
-import FormSimple from '../../../components/forms/FormSimple'
-import MButton from '../../../components/forms/MButton'
+import { Card, CardContent, Typography } from '@mui/material'
 import Notification from '../../../components/notification/Notification'
 import ListTypeOperation from './ListTypeOperation'
+import FormContainer from '../../../components/forms/FormContainer'
 
 const TypeOperation = () => {
   const handleOperation = useNotification()
@@ -43,16 +42,23 @@ const TypeOperation = () => {
   }
   return (
     <>
-      <Typography variant='h3' padding={2}>Page type d'opération</Typography>
-      <FormSimple variant={'outlined'} fields={namefield} submit={submit} form={forms.getForm} handleInput={forms.handleInputChange} libelle={'Valider'} />
-      <Box component={'form'} noValidate sx={{
-        display: 'flex', flexDirection: 'column', width: '100%', padding: 1, alignItems: 'center'
-      }}>
-        <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
-      </Box>
-      <hr></hr>
-      <ListTypeOperation typeOpe={typeOpe} handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
-      {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
+      <Card sx={{ maxWidth: '100vw' }}>
+        <CardContent sx={{ overflowY: 'hidden' }}>
+          <Typography variant='h3' padding={2}>Page type d'opération</Typography>
+
+          <FormContainer btnLibelle={'Valider'}
+            form={forms.getForm}
+            handleInputChange={forms.handleInputChange}
+            loading={loading}
+            namefield={namefield}
+            submit={submit}
+            variant={'outlined'}
+          />
+          <hr></hr>
+          <ListTypeOperation typeOpe={typeOpe} handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} nameFields={namefield} />
+          {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
+        </CardContent>
+      </Card>
     </>
   )
 }

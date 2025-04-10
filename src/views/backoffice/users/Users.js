@@ -1,13 +1,12 @@
-import { Box, Card, CardContent, Typography } from '@mui/material'
+import { Card, CardContent, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import ListUser from './ListUser'
-import FormSimple from '../../../components/forms/FormSimple'
-import MButton from '../../../components/forms/MButton'
 import Notification from '../../../components/notification/Notification'
 import useNotification from '../../../components/notification/useNotification'
 import useForm from '../../../components/forms/useForm'
 import { roleItems } from '../../../utils/function'
 import { CustomerOp } from '../../../classes/metier/CustomerOp'
+import FormContainer from '../../../components/forms/FormContainer'
 
 /*
 Utilisation de form généralisé simple
@@ -17,8 +16,8 @@ const Users = () => {
     const handleOperation = useNotification()
     const [loading, setLoading] = useState(false)
     const [refresh, setRefresh] = useState(0)
-      const userOp = new CustomerOp();
-    
+    const userOp = new CustomerOp();
+
     const initForm = {
         name: '',
         mail: '',
@@ -62,12 +61,15 @@ const Users = () => {
             <CardContent sx={{ overflowY: 'hidden' }}>
                 {/* <BreadCrumbs /> */}
                 <Typography variant='h3' padding={2}>Page utilisateur</Typography>
-                <FormSimple variant={'outlined'} fields={namefield} submit={submit} form={forms.getForm} handleInput={forms.handleInputChange} libelle={'Valider'} />
-                <Box component={'form'} noValidate sx={{
-                    display: 'flex', flexDirection: 'column', width: '100%', padding: 1, alignItems: 'center'
-                }}>
-                    <MButton submit={submit} width='51%' libelle='Valider' loading={loading} />
-                </Box>
+
+                <FormContainer btnLibelle={'Valider'}
+                    form={forms.getForm}
+                    handleInputChange={forms.handleInputChange}
+                    loading={loading}
+                    namefield={namefield}
+                    submit={submit}
+                    variant={'outlined'}
+                />
                 <hr></hr>
                 <ListUser userOp={userOp} nameFields={namefield} handleResponse={handleOperation.handleResponse} refresh={refresh} setRefresh={setRefresh} />
                 {handleOperation.getNotif && <Notification message={handleOperation.getMessage} success={handleOperation.getSuccess} setNotif={handleOperation.resetNotif} notif={handleOperation.getNotif} />}
