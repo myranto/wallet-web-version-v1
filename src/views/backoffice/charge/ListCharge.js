@@ -5,6 +5,7 @@ import useUpdate from '../../../components/update/useUpdate';
 import useDelete from '../../../components/delete/useDelete';
 import Mtable from '../../../components/List/Mtable';
 import { Pagination, Stack } from '@mui/material';
+import { formatCurrency } from '../../../utils/function';
 const headColor = "white";
 
 const ListCharge = ({ handleResponse, refresh, setRefresh, nameFields, chargeOP }) => {
@@ -21,7 +22,7 @@ const ListCharge = ({ handleResponse, refresh, setRefresh, nameFields, chargeOP 
     { name: "Type de compte", selector: (row) => row?.account?.type},
     { name: "Type de charge", selector: (row) => row?.tcharge?.libelle },
     { name: "Type d' opération", selector: (row) => row?.toperation?.libelle },
-    { name: "Montant", selector: (row) => row.amount },
+    { name: "Montant", selector: (row) => formatCurrency(row.amount) },
     { name: "Date début", selector: (row) => new Date(row.start_date).toLocaleDateString() },
     { name: "Date fin", selector: (row) => new Date(row.end_date).toLocaleDateString() }
   ];

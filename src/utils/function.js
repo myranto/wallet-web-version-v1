@@ -48,8 +48,21 @@ export function convertDtoToItems(dto = null) {
     return result
 }
 
-export function getDatePart(date) {
-    return date.split('T')[0];
+const currency = [
+    { langage: 'mg-MG', code: 'MGA', country: 'mg' },
+    { langage: 'fr-FR', code: 'EUR', country: 'fr' },
+    { langage: 'en-US', code: 'USD', country: 'us' },
+]
+
+export function formatCurrency(amount, country = 'mg') {
+    let result = null
+    for (let i = 0; i < currency.length; i++) {
+        if(currency[i].country===country){
+            result = currency[i];
+            break
+        }
+    }
+    return amount.toLocaleString(result.langage, { style: "currency", currency: result.code });
 }
 export function formatDateForInput(isoString) {
 

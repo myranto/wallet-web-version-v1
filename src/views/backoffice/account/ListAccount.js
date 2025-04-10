@@ -5,6 +5,7 @@ import useUpdate from '../../../components/update/useUpdate';
 import useDelete from '../../../components/delete/useDelete';
 import DeleteElement from '../../../components/delete/DeleteElement';
 import UpdateElement from '../../../components/update/UpdateElement';
+import { formatCurrency } from '../../../utils/function';
 
 
 const headColor = "white";
@@ -19,7 +20,7 @@ const ListAccount = ({ handleResponse, refresh, setRefresh, nameFields,accountOP
 
   const column = [
     { name: "Type de compte", selector: (row) => row?.type?.type },
-    { name: "Solde actuel", selector: (row) => row.currentamount },
+    { name: "Solde actuel", selector: (row) => formatCurrency(row.currentamount) },
     { name: "Date de solde", selector: (row) => new Date(row.dateamount).toLocaleDateString() }
   ];
   useEffect(() => {

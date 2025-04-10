@@ -27,7 +27,7 @@ const ListTypeCharge = ({ handleResponse, refresh, setRefresh, nameFields, typeC
       .findAll('creationdate', 'asc',page)
       .then((data) => {
         setLoading(false)
-        console.log(data?.data?.content?.length);
+        
         
         setType(data?.data?.content);
         setTotalPage(data?.data?.totalPages)

@@ -5,6 +5,7 @@ import DeleteElement from '../../../components/delete/DeleteElement';
 import UpdateElement from '../../../components/update/UpdateElement';
 import { Pagination, Stack } from '@mui/material';
 import Mtable from '../../../components/List/Mtable';
+import { formatCurrency } from '../../../utils/function';
 
 const headColor = "white";
 const ListTransfer = ({ handleResponse, refresh, setRefresh, nameFields, transferOP }) => {
@@ -20,7 +21,7 @@ const ListTransfer = ({ handleResponse, refresh, setRefresh, nameFields, transfe
         { name: "Identifiant", selector: (row) => row.id },
         { name: "Compte debit", selector: (row) => row?.debit?.type },
         { name: "Compte credit", selector: (row) => row?.credit?.type },
-        { name: "Montant", selector: (row) => row.amount },
+        { name: "Montant", selector: (row) => formatCurrency(row.amount) },
         { name: "Date début", selector: (row) => new Date(row.start_date).toLocaleDateString() },
         { name: "Date fin", selector: (row) => new Date(row.end_date).toLocaleDateString() }
     ];

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { TypeOperationOP } from '../../../classes/metier/TypeOperationOP';
 import useUpdate from '../../../components/update/useUpdate';
 import useDelete from '../../../components/delete/useDelete';
 import DeleteElement from '../../../components/delete/DeleteElement';
@@ -28,7 +27,6 @@ const ListTypeOperation = ({ handleResponse, refresh, setRefresh, nameFields,typ
       .findAll('creationdate', 'asc',page)
       .then((data) => {
         setLoading(false)
-        console.log(data?.data?.content?.length);
 
         setType(data?.data?.content);
         setTotalPage(data?.data?.totalPages)
