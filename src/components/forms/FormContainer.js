@@ -24,7 +24,7 @@ const FormContainer = ({
                 color={!showForm ? 'primary' : 'error'}
                 onClick={handle}
             >
-                {!showForm?'Nouveau':'Fermer'}
+                {!showForm ? 'Nouveau' : 'Fermer'}
             </Button>
 
             <Collapse in={showForm} >

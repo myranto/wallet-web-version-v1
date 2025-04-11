@@ -17,7 +17,6 @@ export default function Mcontainer({ Component = null, componentName = null, soc
     const toggleDrawer = () => {
         setOpen(!open)
         if (!isMobile) {
-            // setDrawerWidth(open ? '100%' : '87%');
             setDrawerWidth(!open ? 'calc(100% - 250px)' : '100%');
         } if (isMobile) {
             setDrawerWidth('100%');
@@ -29,22 +28,20 @@ export default function Mcontainer({ Component = null, componentName = null, soc
             <CssBaseline />
             <Header messageOpen={toggleDrawerDiscu} drawerWidth={drawerWidth} open={open} socket={socket} toggleDrawer={toggleDrawer} currentComponent={componentName} />
             <Collapse in={open}>
-                            <Drawer
-                                open={open}
-                                onClose={toggleDrawer}
-                                anchor="left"
-                                variant='persistent'
-                                // sx={{ height: '10px' }}
-                            >
-                                <Sidebar toggleDrawer={toggleDrawer} />
-                            </Drawer>
-                        </Collapse>
+                <Drawer
+                    open={open}
+                    onClose={toggleDrawer}
+                    anchor="left"
+                    variant='persistent'
+                >
+                    <Sidebar toggleDrawer={toggleDrawer} />
+                </Drawer>
+            </Collapse>
             {Component &&
                 <Box sx={{
                     width: drawerWidth,
                     float: 'right',
-                    // backgroundColor:'blue',
-                    right:0
+                    right: 0
                 }}>
                     <Component toggleDrawer={toggleDrawerDiscu} open={openD} socket={socket} />
                 </Box>
