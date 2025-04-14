@@ -10,6 +10,7 @@ import FormSimple from '../../components/forms/FormSimple';
 import MButton from '../../components/forms/MButton';
 import useNotification from '../../components/notification/useNotification';
 import useForm from '../../components/forms/useForm';
+import { loggedApp, TokenUser } from '../../utils/function';
 
 
 const Login = () => {
@@ -49,9 +50,8 @@ const Displaying = () => {
             .then((data) => {
                 setLoading(false)
                 handleOperation.handleResponse(true, 'Connexion réussi')
-                // login(data?.data?.user)
-                // localStorage.setItem(loggedApp, JSON.stringify(data?.data?.user))
-                // localStorage.setItem(TokenUser, data?.token)
+                localStorage.setItem(loggedApp, JSON.stringify(data?.data))
+                localStorage.setItem(TokenUser, data?.data?.token)
                 // const route = data?.data?.user?.role === 1 ? '/home/admin' : '/home/request'
                 setTimeout(() => {
                     navigate('/home')

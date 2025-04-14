@@ -14,6 +14,9 @@ export class Api {
             if (error.message === 'Network Error') {
                 throw new axios.Cancel('Veuillez vérifier votre connexion internet.')
             }
+            if (error.status === 403) {
+                throw new axios.Cancel('Veuillez vous reconnecter')
+            }
         }
         console.log(error)
         const message = error.response.data.error ? error.response.data.error : error.response.data.message

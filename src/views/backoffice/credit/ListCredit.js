@@ -4,8 +4,8 @@ import UpdateElement from '../../../components/update/UpdateElement';
 import useUpdate from '../../../components/update/useUpdate';
 import useDelete from '../../../components/delete/useDelete';
 import Mtable from '../../../components/List/Mtable';
-import { Pagination, Stack } from '@mui/material';
 import { formatCurrency } from '../../../utils/function';
+import Mpaginate from '../../../components/paginate/Mpaginate';
 const headColor = "white";
 
 const ListCredit = ({ handleResponse, refresh, setRefresh, nameFields,creditOP }) => {
@@ -74,14 +74,7 @@ const ListCredit = ({ handleResponse, refresh, setRefresh, nameFields,creditOP }
                 update={updateFunction.openUpdate}
                 loading={loading}
             />
-            <Stack spacing={2} alignItems={"center"}>
-                <Pagination
-                    count={totalPage}
-                    page={page}
-                    onChange={(event, value) => setPage(value)}
-                    color={'primary'}
-                />
-            </Stack>
+            <Mpaginate totalPage={totalPage} page={page} setPage={setPage} />
             <DeleteElement
                 open={deleteFunction.getOpen} message={'Voulez-vous vraiment supprimer ' + deleteFunction.getId + '?'} setOpen={deleteFunction.handleClick} onClick={deleteOne} />
             {updateFunction.getOpen && <UpdateElement open={updateFunction.getOpen} setOpen={updateFunction.handleClick} submit={updateOne} field={nameFields} initForm={updateFunction.getBody} />}

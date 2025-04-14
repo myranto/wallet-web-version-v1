@@ -4,7 +4,7 @@ import useDelete from '../../../components/delete/useDelete';
 import DeleteElement from '../../../components/delete/DeleteElement';
 import UpdateElement from '../../../components/update/UpdateElement';
 import Mtable from '../../../components/List/Mtable';
-import { Pagination, Stack } from '@mui/material';
+import Mpaginate from '../../../components/paginate/Mpaginate';
 
 const column = [
   { name: "Identifiant", selector: (row) => row.id },
@@ -74,14 +74,7 @@ const ListTypeCharge = ({ handleResponse, refresh, setRefresh, nameFields, typeC
         update={updateFunction.openUpdate}
         loading={loading}
       />
-      <Stack spacing={2} alignItems={"center"}>
-        <Pagination
-          count={totalPage}
-          page={page}
-          onChange={(event, value) => setPage(value)}
-          color={'primary'}
-        />
-      </Stack>
+      <Mpaginate totalPage={totalPage} page={page} setPage={setPage} />
       <DeleteElement
         open={deleteFunction.getOpen} message={'Voulez-vous vraiment supprimer ' + deleteFunction.getId + '?'} setOpen={deleteFunction.handleClick} onClick={deleteOne} />
       {updateFunction.getOpen && <UpdateElement open={updateFunction.getOpen} setOpen={updateFunction.handleClick} submit={updateOne} field={nameFields} initForm={updateFunction.getBody} />}

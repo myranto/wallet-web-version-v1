@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Pagination, Stack } from '@mui/material';
 import Mtable from '../../../components/List/Mtable';
 import useDelete from '../../../components/delete/useDelete';
 import DeleteElement from '../../../components/delete/DeleteElement';
 import UpdateElement from '../../../components/update/UpdateElement';
 import useUpdate from '../../../components/update/useUpdate';
+import Mpaginate from '../../../components/paginate/Mpaginate';
 
 const column = [
   { name: "Identifiant", selector: (row) => row.id },
@@ -77,14 +77,7 @@ const ListAccountType = ({ handleResponse, refresh, setRefresh,acctype }) => {
         update={updateFunction.openUpdate}
         loading={loading}
       />
-      <Stack spacing={2} alignItems={"center"}>
-        <Pagination
-          count={totalPage}
-          page={page}
-          onChange={(event, value) => setPage(value)}
-          color={'primary'}
-        />
-      </Stack>
+      <Mpaginate totalPage={totalPage} page={page} setPage={setPage} />
       <DeleteElement open={deleteFunction.getOpen} message={'Voulez-vous vraiment supprimer ' + deleteFunction.getId + '?'} setOpen={deleteFunction.handleClick} onClick={deleteOne} />
       {updateFunction.getOpen && <UpdateElement open={updateFunction.getOpen} setOpen={updateFunction.handleClick} submit={updateOne} field={namefield} initForm={updateFunction.getBody} />}
     </>
