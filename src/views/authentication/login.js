@@ -33,8 +33,8 @@ const Login = () => {
 const Displaying = () => {
     const authOperation = new AuthOperation()
     const initForm = {
-        mail: 'my.randrianantoandro@gmail.com',
-        password: 'myranto',
+        mail: 'francis@gmail.com',
+        password: 'Francis',
     }
     const forms = useForm(initForm)
     const [loading, setLoading] = useState(false)
