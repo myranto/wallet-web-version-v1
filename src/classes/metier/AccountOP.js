@@ -7,4 +7,7 @@ export class AccountOP extends CrudCommon{
     findByCustomer(id){
         return this.getCall(this.uri + '/customer/' + id, true)
     }
+    findCurrentBalance(customer_id){
+        return this.getCall(this.uri + '/current_amount/'+customer_id, true)
+    }
 }

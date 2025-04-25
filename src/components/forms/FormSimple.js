@@ -30,7 +30,7 @@ const FormSimple = ({ fields, handleInput, form, variant, width = '50%' }) => {
                         </FormControl>
                     }
                     {!row?.normal && row?.type === 'select' &&
-                        <Box sx={{ width: width, maxWidth: '100%', alignItems: 'center' }}>
+                        <Box key={index} sx={{ width: width, maxWidth: '100%', alignItems: 'center' }}>
                             <FormControl variant={variant} fullWidth key={index}  >
                                 <InputLabel id="demo-simple-select-standard-label">{row.libelle}</InputLabel>
                                 <Select
