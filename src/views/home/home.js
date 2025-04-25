@@ -22,8 +22,7 @@ const Home = () => {
   ];
   useEffect(() => {
     setLoading(true)
-    // accountOP.findCurrentBalance(person?.id)
-    accountOP.findCurrentBalance('CUS00004')
+    accountOP.findCurrentBalance(person?.id)
       .then((data) => {
         setLoading(false)
         setList(data?.data)

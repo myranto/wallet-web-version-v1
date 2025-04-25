@@ -20,7 +20,7 @@ const Credit = () => {
     const acctype = new AccTypeOP()
     const creditOP = new CreditOP()
     const initForm = {
-        customer_id: 'CUS00004',
+        customer_id: 'CUS00006',
         start_date: '',
         end_date: '',
         amount: '',

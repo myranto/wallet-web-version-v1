@@ -8,38 +8,30 @@ import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import { Message, Person, SupportAgent, Wallet } from "@mui/icons-material";
+import { Message, Person, Wallet } from "@mui/icons-material";
 // import Notification from "../../notification/Notification";
 import './header.css'
-import Sidebar from '../side-bar/Sidebar';
 import DropDownMenu from '../drop-down-menu/DropDownMenu';
-import { Collapse, Drawer, useMediaQuery } from '@mui/material';
-import { getProfilStorage, Personrole } from '../../../utils/function';
+import { useMediaQuery } from '@mui/material';
+import { getNameField, getProfilStorage } from '../../../utils/function';
 // import { UserOperation } from '../../../classes/users/UserOperation';
 
 // import HeaderNotification from '../../notification/HeaderNotification/HeaderNotification';
 // import ChatNotification from '../../notification/ChatNotification/ChatNotification';
 // composant utiliser pour avoir un header dynamique et uniforme pour toute les pages
 function Header({ messageOpen, currentComponent = null, toggleDrawer, drawerWidth, open, socket = null }) {
-    const person = getProfilStorage()
+    let person = getProfilStorage()
     const isMobile = useMediaQuery('(max-width:600px)');
     const [message, setMessage] = useState(null)
     const [success, setSuccess] = useState(true)
     const [notif, setNotif] = useState(false)
     // const userOperation = new UserOperation()
     const [img, setImg] = useState(null)
-    // React.useEffect(() => {
-    //     userOperation.getFiles(person?.photo)
-    //         .then((data) => {
-    //             setImg(data);
-
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-
-    //         })
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [person?.photo])
+    React.useEffect(() => {
+        person = getProfilStorage()
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [person?.id])
     return (
         <AppBar
             // position="static"
@@ -104,7 +96,7 @@ function Header({ messageOpen, currentComponent = null, toggleDrawer, drawerWidt
                     <Box sx={{
                         flexGrow: 0
                     }}>
-                        <Button color="inherit">My Ranto
+                        <Button color="inherit">{person?.name}
                             <label
                                 variant="h5"
                                 className="hide-on-mobile"
@@ -116,7 +108,7 @@ function Header({ messageOpen, currentComponent = null, toggleDrawer, drawerWidt
                                     textDecoration: 'none',
                                 }}
                             >
-                                /Admin
+                                /{getNameField(person?.role)}
                             </label>
                         </Button>
                     </Box>

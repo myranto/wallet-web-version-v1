@@ -20,7 +20,7 @@ const Account = () => {
     const initForm = {
         currentamount: '',
         dateamount: '',
-        customer_id: 'CUS00004',
+        customer_id: 'CUS00006',
         type_id: ''
     }
     useEffect(() => {

@@ -21,7 +21,7 @@ export const Personrole = {
 }
 
 export const roleItems = [
-    { name: 'Administrateur', value: 'A' },
+    { name: 'Admin', value: 'A' },
     { name: 'Client', value: 'C' },
 ]
 

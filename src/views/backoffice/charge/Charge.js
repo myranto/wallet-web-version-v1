@@ -25,7 +25,7 @@ const Charge = () => {
   const typeChargeOp = new TypeChargeOP()
   const chargeOP = new ChargeOP()
   const initForm = {
-    customer_id: 'CUS00004',
+    customer_id: 'CUS00006',
     start_date: '',
     end_date: '',
     amount: '',
