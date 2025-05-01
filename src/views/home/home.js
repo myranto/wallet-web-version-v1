@@ -45,7 +45,7 @@ const Home = () => {
             width: '100%',
           }}
         > */}
-          <Typography>Home admin</Typography>
+          <Typography>Solde du mois</Typography>
           <Mtable
             color={headColor}
             column={column}

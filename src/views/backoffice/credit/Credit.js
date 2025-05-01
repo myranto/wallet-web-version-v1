@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useNotification from '../../../components/notification/useNotification'
 import { TypeOperationOP } from '../../../classes/metier/TypeOperationOP'
-import { convertDtoToItems } from '../../../utils/function'
+import { convertDtoToItems, getProfilStorage } from '../../../utils/function'
 import { AccTypeOP } from '../../../classes/metier/AccTypeOP'
 import { CreditOP } from '../../../classes/metier/CreditOP'
 import useForm from '../../../components/forms/useForm'
@@ -18,9 +18,10 @@ const Credit = () => {
     const [operation, setOperation] = useState(null)
     const operationOP = new TypeOperationOP()
     const acctype = new AccTypeOP()
+    const person = getProfilStorage()
     const creditOP = new CreditOP()
     const initForm = {
-        customer_id: 'CUS00006',
+        customer_id: person?.id,
         start_date: '',
         end_date: '',
         amount: '',

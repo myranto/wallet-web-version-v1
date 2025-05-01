@@ -4,7 +4,7 @@ import useForm from '../../../components/forms/useForm'
 import { Card, CardContent, Typography } from '@mui/material'
 import Notification from '../../../components/notification/Notification'
 import ListAccount from './ListAccount'
-import { convertDtoToItems } from '../../../utils/function'
+import { convertDtoToItems, getProfilStorage } from '../../../utils/function'
 import { AccountOP } from '../../../classes/metier/AccountOP'
 import { AccTypeOP } from '../../../classes/metier/AccTypeOP'
 import FormContainer from '../../../components/forms/FormContainer'
@@ -16,11 +16,12 @@ const Account = () => {
     const [type, setType] = useState(null)
 
     const accountOP = new AccountOP()
+    const person = getProfilStorage()
     const acctype = new AccTypeOP()
     const initForm = {
         currentamount: '',
         dateamount: '',
-        customer_id: 'CUS00006',
+        customer_id: person?.id,
         type_id: ''
     }
     useEffect(() => {

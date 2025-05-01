@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useNotification from '../../../components/notification/useNotification'
 import { AccTypeOP } from '../../../classes/metier/AccTypeOP'
 import { TransferOP } from '../../../classes/metier/TransferOP'
-import { convertDtoToItems } from '../../../utils/function'
+import { convertDtoToItems, getProfilStorage } from '../../../utils/function'
 import useForm from '../../../components/forms/useForm'
 import ListTransfer from './ListTransfer'
 import { Card, CardContent, Typography } from '@mui/material'
@@ -17,9 +17,9 @@ const Transfer = () => {
 
     const acctype = new AccTypeOP()
     const transferOP = new TransferOP()
-
+    const person = getProfilStorage()
     const initForm = {
-        customer: 'CUS00004',
+        customer: person?.id,
         start_date: '',
         end_date: '',
         amount: '',

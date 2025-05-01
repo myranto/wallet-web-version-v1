@@ -5,7 +5,7 @@ import { AccTypeOP } from '../../../classes/metier/AccTypeOP'
 import { TypeChargeOP } from '../../../classes/metier/TypeChargeOP'
 import { ChargeOP } from '../../../classes/metier/ChargeOP'
 import useForm from '../../../components/forms/useForm'
-import { convertDtoToItems } from '../../../utils/function'
+import { convertDtoToItems, getProfilStorage } from '../../../utils/function'
 import { Card, CardContent, Typography } from '@mui/material'
 import Notification from '../../../components/notification/Notification'
 import ListCharge from './ListCharge'
@@ -20,12 +20,13 @@ const Charge = () => {
   const [operation, setOperation] = useState(null)
   const [tcharge, setTcharge] = useState(null)
 
+  const person = getProfilStorage()
   const operationOP = new TypeOperationOP()
   const acctype = new AccTypeOP()
   const typeChargeOp = new TypeChargeOP()
   const chargeOP = new ChargeOP()
   const initForm = {
-    customer_id: 'CUS00006',
+    customer_id: person?.id,
     start_date: '',
     end_date: '',
     amount: '',
